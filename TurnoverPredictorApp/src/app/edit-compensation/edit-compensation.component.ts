@@ -29,7 +29,6 @@ export class EditCompensationComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private userService: UserService,
     private compensationService: CompensationService,
     private snackBar: MatSnackBar,
     private router: Router,
@@ -49,14 +48,17 @@ export class EditCompensationComponent implements OnInit {
     console.log('in dilg', this.userId);
   }
 
-  updateJobDescription(): void {
+  updateCompensation(): void {
     if (!this.editCompForm.valid) {
       return;
     }
-    this.editCompForm.value.id = this.userId;
-    this.editCompForm.value.managerId = parseInt(this.editCompForm.value.managerId, 10);
+    this.editCompForm.value.userId = this.userId;
+    this.editCompForm.value.annualIncome = parseInt(this.editCompForm.value.annualIncome, 10);
+    this.editCompForm.value.percentSalaryHike = parseInt(this.editCompForm.value.percentSalaryHike, 10);
+    this.editCompForm.value.dailyRate = parseInt(this.editCompForm.value.dailyRate, 10);
+    this.editCompForm.value.stockOptionLevel = parseInt(this.editCompForm.value.stockOptionLevel, 10);
     console.log('rray2', this.editCompForm.value);
-    this.userService.updateJobDesc(this.editCompForm.value).subscribe((response) => {
+    this.compensationService.updateCompensation(this.editCompForm.value).subscribe((response) => {
       this.snackBar.open('Compensation details updated', '',
         {
           duration: 2000,

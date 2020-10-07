@@ -12,7 +12,7 @@ namespace TurnoverPredictorAPI.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(nullable: false),
                     BusinessTravel = table.Column<string>(nullable: true),
                     AnnualIncome = table.Column<float>(nullable: false),
@@ -31,7 +31,7 @@ namespace TurnoverPredictorAPI.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(nullable: false),
                     JobSatisfaction = table.Column<int>(nullable: false),
                     EnvironmentSatisfaction = table.Column<int>(nullable: false),
@@ -48,7 +48,7 @@ namespace TurnoverPredictorAPI.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     UserId = table.Column<int>(nullable: false),
                     PerformanceRating = table.Column<int>(nullable: false),
                     OverTime = table.Column<bool>(nullable: false),
@@ -70,7 +70,7 @@ namespace TurnoverPredictorAPI.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
