@@ -1,0 +1,39 @@
+mat-checkbox, mat-form-field, .mat-title{
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+a, button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;          
+    display: inline-block;       
+    left: 50%;                 
+    transform: translate(-50%);
+}
+
+a {
+    text-decoration: none;
+    color: indigo;
+}
+.register-form{
+    margin-top: 3rem;
+    /* margin-bottom: 1rem; */
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    /* border: 1px solid black; */
+    border-radius: 4px;
+    position: relative;          
+    display: inline-block;       
+    left: 50%;                 
+    transform: translate(-50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 1px;
+}

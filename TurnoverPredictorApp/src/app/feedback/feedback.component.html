@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Employee Feedback</h2>
+<mat-dialog-content>
+    <form [formGroup]="feedbackForm" class="feedback-form">
+        <div>
+            <div>
+                <mat-label>Job Satisfaction</mat-label><br>
+                <mat-radio-group formControlName="jobSatisfaction" required>
+                    <mat-radio-button value="4">Very good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Bad</mat-radio-button>
+                    <mat-radio-button value="1">Very bad</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <mat-label>Environment Satisfaction</mat-label><br>
+                <mat-radio-group formControlName="environmentSatisfaction" required>
+                    <mat-radio-button value="4">Very good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Bad</mat-radio-button>
+                    <mat-radio-button value="1">Very bad</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <mat-label>Work Life Balance</mat-label><br>
+                <mat-radio-group formControlName="workLifeBalance" required>
+                    <mat-radio-button value="4">Very good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Bad</mat-radio-button>
+                    <mat-radio-button value="1">Very bad</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="submitFeedback()" color="accent">Submit</button>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

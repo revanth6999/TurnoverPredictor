@@ -1,0 +1,51 @@
+table{
+    width: 75%;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-top: 2%;
+}
+
+.mat-title {
+    margin-left: 12.5%;
+    margin-top: 5%;
+}
+
+tr.example-detail-row {
+height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+background: #efefef;
+}
+
+.example-element-row td {
+border-bottom-width: 0;
+}
+
+.example-element-detail {
+overflow: hidden;
+display: flex;
+float: right;
+margin-right: 0%;
+}
+
+.example-element-symbol {
+font-weight: bold;
+font-size: 40px;
+line-height: normal;
+}
+
+.example-element-description-attribution {
+opacity: 0.5;
+}
+
+button {
+    margin: 20px;
+    /* margin-right: 0; */
+    position: relative;
+    right: 0px;
+}

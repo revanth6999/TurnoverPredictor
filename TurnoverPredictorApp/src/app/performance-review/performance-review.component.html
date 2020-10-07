@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>Performance Review</h2>
+<mat-dialog-content>
+    <form [formGroup]="performanceForm" class="review-form">
+        <div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label id="ttlyLabel">Training times last year</mat-label>
+                    <input type="number" min="0" matInput formControlName="trainingTimesLastYear" required>
+                    <mat-error *ngIf="performanceForm.controls.trainingTimesLastYear.touched && performanceForm.controls.trainingTimesLastYear.invalid">
+                        <span *ngIf="performanceForm.controls.trainingTimesLastYear.errors.required">Last name is required</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-label>Over time</mat-label><br>
+                <mat-radio-group formControlName="overTime" required>
+                    <mat-radio-button value="1">Yes</mat-radio-button>
+                    <mat-radio-button value="0">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <mat-label>Performance Rating</mat-label><br>
+                <mat-radio-group formControlName="performanceRating" required>
+                    <mat-radio-button value="4">Very good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Bad</mat-radio-button>
+                    <mat-radio-button value="1">Very bad</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div>
+                <mat-label>Job Involvement</mat-label><br>
+                <mat-radio-group formControlName="jobInvolvement" required>
+                    <mat-radio-button value="4">Very good</mat-radio-button>
+                    <mat-radio-button value="3">Good</mat-radio-button>
+                    <mat-radio-button value="2">Bad</mat-radio-button>
+                    <mat-radio-button value="1">Very bad</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button (click)="submitPerformance()" color="accent">Submit</button>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,61 @@
+mat-checkbox, mat-form-field{
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.mat-title{
+    padding-top: 0.5rem;
+    margin-bottom: 0rem;
+}
+a, button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: indigo;
+}
+.profile-form{
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    margin-left: 10rem;
+}
+
+.mat-display-1{
+    margin-bottom: 10px;
+}
+
+img{
+    border-radius: 50%;
+    width: 200px;
+    margin-top: 3rem;
+    margin-left: 10rem;
+    display: inline-block;
+}
+
+#user-title {
+    display: inline-block;
+    padding: 3rem;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-right: 2rem;
+    margin-left: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#form-title{
+    margin-bottom: 2rem;
+}
+
+#feedbackBtn {
+    float: right;
+}

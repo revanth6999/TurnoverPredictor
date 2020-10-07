@@ -1,0 +1,73 @@
+<img src="../../assets/propic.jpg">
+<div id="user-title">
+    <div class="mat-display-1">Revanth Nallam</div>
+    <div class="mat-title">Associate Application Developer, iHCM</div>
+    <div class="mat-title">revanth@adp.com</div>
+</div>
+<mat-divider></mat-divider>
+<button id="feedbackBtn" mat-raised-button (click)="openFeedbackDlg()">Give Feedback</button>
+<form [formGroup]="profileForm" (submit)="updateProfile()" class="profile-form">
+    <div>
+        <div id="form-title" class="mat-title">Update your profile</div>
+        <div>
+            <mat-form-field> 
+                <mat-label>Date Of Birth</mat-label>
+                <input matInput [matDatepicker]="datePicker1" formControlName="dateOfBirth">
+                <mat-datepicker-toggle [for]="datePicker1" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #datePicker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                    <mat-option value="Male" selected>Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                </mat-select>
+            </mat-form-field> 
+        </div>
+        <div>
+            <mat-form-field  color="primary">
+                <mat-label>Highest degree</mat-label>
+                <mat-select formControlName="education">
+                    <mat-option value="1" selected>Secondary</mat-option>
+                    <mat-option value="2" selected>Higher Secondary</mat-option>
+                    <mat-option value="3">Under graduate</mat-option>
+                    <mat-option value="4">Post graduate</mat-option>
+                    <mat-option value="5">Doctorate</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field color="primary">
+                <mat-label>Education Field</mat-label>
+                <input matInput formControlName="educationField">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary">
+                <mat-label>MaritalStatus</mat-label>
+                <mat-select formControlName="maritalStatus">
+                    <mat-option value="Single" selected>Single</mat-option>
+                    <mat-option value="Married">Married</mat-option>
+                    <mat-option value="Divorced">Divorced</mat-option>
+                </mat-select>
+            </mat-form-field> 
+        </div>
+        <div>
+            <mat-form-field  color="primary">
+                <mat-label>No. of companies worked</mat-label>
+                <input type="number" min="0" matInput formControlName="numCompaniesWorked">
+            </mat-form-field>
+            <mat-form-field color="primary">
+                <mat-label>Total working years</mat-label>
+                <input type="number" min="0" matInput formControlName="totalWorkingYears">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field  color="primary">
+                <mat-label>Distance from home</mat-label>
+                <input type="number" min="0" matInput formControlName="distanceFromHome">
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button color="accent" type="submit">Save</button> <br>
+</form>

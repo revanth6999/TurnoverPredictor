@@ -1,0 +1,53 @@
+.mat-title{
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+mat-form-field {
+    padding-top: 1rem;
+}
+
+a, button {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;          
+    display: inline-block;       
+    left: 50%;                 
+    transform: translate(-50%);
+}
+/* 
+mat-label{
+    font-size: 1.1rem;
+    font-weight: 500;
+} */
+a {
+    text-decoration: none;
+    color: indigo;
+}
+.edit-compensation-form{
+    margin-top: 3rem;
+    /* margin-bottom: 1rem; */
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    /* border: 1px solid black; */
+    border-radius: 4px;
+    position: relative;          
+    display: inline-block;       
+    left: 50%;                 
+    transform: translate(-50%);
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+mat-form-field{
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

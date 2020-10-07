@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Edit Compensation</h2>
+<mat-dialog-content>
+    <form [formGroup]="editCompForm" class="edit-compensation-form">
+        <div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Business Travel</mat-label>
+                    <input matInput formControlName="businessTravel" required> 
+                    <mat-error *ngIf="editCompForm.controls.businessTravel.touched && editCompForm.controls.businessTravel.invalid">
+                        <span *ngIf="editCompForm.controls.businessTravel.errors.required">Business travel is required</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Annual Income</mat-label>
+                    <input type="number" min="0" matInput formControlName="annualIncome" required> 
+                    <mat-error *ngIf="editCompForm.controls.annualIncome.touched && editCompForm.controls.annualIncome.invalid">
+                        <span *ngIf="editCompForm.controls.annualIncome.errors.required">Annual income is required</span>
+                    </mat-error>
+                </mat-form-field> 
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Percent Salary Hike</mat-label>
+                    <input type="number" min="0" max="100" matInput formControlName="percentSalaryHike" required> 
+                    <mat-error *ngIf="editCompForm.controls.percentSalaryHike.touched && editCompForm.controls.percentSalaryHike.invalid">
+                        <span *ngIf="editCompForm.controls.percentSalaryHike.errors.required">Percent salary hike is required</span>
+                    </mat-error>
+                </mat-form-field> 
+            </div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Daily Rate</mat-label>
+                    <input type="number" min="0" matInput formControlName="dailyRate" required> 
+                    <mat-error *ngIf="editCompForm.controls.dailyRate.touched && editCompForm.controls.dailyRate.invalid">
+                        <span *ngIf="editCompForm.controls.dailyRate.errors.required">Daily rate is required</span>
+                    </mat-error>
+                </mat-form-field> 
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Stock Option Level</mat-label>
+                    <input type="number" min="0" matInput formControlName="stockOptionLevel" required> 
+                    <mat-error *ngIf="editCompForm.controls.stockOptionLevel.touched && editCompForm.controls.stockOptionLevel.invalid">
+                        <span *ngIf="editCompForm.controls.stockOptionLevel.errors.required">Stock option level is required</span>
+                    </mat-error>
+                </mat-form-field> 
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="accent">Update</button>
+    <button mat-stroked-button>Close</button>
+</mat-dialog-actions>

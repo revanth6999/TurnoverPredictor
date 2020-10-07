@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Edit Job Description</h2>
+<mat-dialog-content>
+    <form [formGroup]="editJDForm" class="edit-jd-form">
+        <div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Job Role</mat-label>
+                    <input matInput formControlName="jobRole" required> 
+                    <mat-error *ngIf="editJDForm.controls.jobRole.touched && editJDForm.controls.jobRole.invalid">
+                        <span *ngIf="editJDForm.controls.jobRole.errors.required">Job Role is required</span>
+                    </mat-error>
+                </mat-form-field> 
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Job Level</mat-label>
+                    <input matInput formControlName="jobLevel" required> 
+                    <mat-error *ngIf="editJDForm.controls.jobLevel.touched && editJDForm.controls.jobLevel.invalid">
+                        <span *ngIf="editJDForm.controls.jobLevel.errors.required">Job Level is required</span>
+                    </mat-error>
+                </mat-form-field> 
+            </div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Department</mat-label>
+                    <input matInput formControlName="department" required> 
+                    <mat-error *ngIf="editJDForm.controls.department.touched && editJDForm.controls.department.invalid">
+                        <span *ngIf="editJDForm.controls.department.errors.required">Department is required</span>
+                    </mat-error>
+                </mat-form-field> 
+            </div>
+            <div>
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Manager ID</mat-label>
+                    <input type="number" min="0" matInput formControlName="managerId" required>
+                    <mat-error *ngIf="editJDForm.controls.managerId.touched && editJDForm.controls.managerId.invalid">
+                        <span *ngIf="editJDForm.controls.managerId.errors.required">Manager ID is required</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button type="submit" (click)="updateJobDescription()" color="accent">Update</button>
+    <button mat-stroked-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

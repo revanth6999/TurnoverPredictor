@@ -1,0 +1,50 @@
+<form [formGroup]="registerForm" (submit)="register()" class="register-form">
+    <div>
+        <div class="mat-title">Create account</div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName" required> 
+                <mat-error *ngIf="registerForm.controls.firstName.touched && registerForm.controls.firstName.invalid">
+                    <span *ngIf="registerForm.controls.firstName.errors.required">First name is required</span>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName" required>
+                <mat-error *ngIf="registerForm.controls.lastName.touched && registerForm.controls.lastName.invalid">
+                    <span *ngIf="registerForm.controls.lastName.errors.required">Last name is required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field  color="primary" hideRequiredMarker>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+                    <span *ngIf="registerForm.controls.email.errors.email">Enter a valid email</span>
+                    <span *ngIf="registerForm.controls.email.errors.required">Email is required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" required > 
+                <mat-error *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+                    <span *ngIf="registerForm.controls.password.errors.required">Enter a password</span>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Confirm password</mat-label>
+                <input type="password" formControlName="confirmPassword" matInput required>
+                <mat-error *ngIf="registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.invalid">
+                    <span *ngIf="registerForm.controls.confirmPassword.errors.required">Confirm your password</span>
+                    <span *ngIf="registerForm.controls.confirmPassword.errors.mustMatch">Passwords do not match</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button color="accent" type="submit">Register</button> <button mat-stroked-button [routerLink]="['/home']" color="primary">Cancel</button><br>
+    <a href="login">Already have an account? Sign in</a>
+</form>

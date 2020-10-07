@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>
+        <button mat-flat-button color="primary" disableRipple><mat-icon>menu</mat-icon></button>
+        Turnover Predictor
+    </div>
+    <!-- <div>
+        <button mat-flat-button color="primary" disableRipple [routerLink]="['/requests']"><mat-icon [matBadgeHidden]="true" matBadge="1" matBadgeColor="warn">notifications</mat-icon></button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu" disableRipple><mat-icon>person</mat-icon> Welcome Revanth<mat-icon>arrow_drop_down</mat-icon></button>
+        <mat-menu #menu="matMenu">
+        <button mat-menu-item>Logout</button>
+        </mat-menu>
+    </div> -->
+    <div>
+        <button mat-flat-button color="primary" [routerLink]="['/login']">Login</button>
+    </div>
+</mat-toolbar>
