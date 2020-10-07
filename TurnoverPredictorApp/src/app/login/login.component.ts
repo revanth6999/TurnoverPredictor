@@ -37,14 +37,18 @@ export class LoginComponent implements OnInit {
       this.snackBar.open('Login successful', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
+
+        
       this.router.navigate(['/profile']);
       }, error => {
         this.snackBar.open('Incorrect username or password', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

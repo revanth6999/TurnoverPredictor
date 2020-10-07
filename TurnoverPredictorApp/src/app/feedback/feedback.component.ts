@@ -8,6 +8,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { Router } from '@angular/router';
 import { MustMatch } from '../_helpers/must-match.validator';
 import { FeedbackService } from '../_services/feedback.service';
+import { User } from '../_models/User';
 
 @Component({
   selector: 'app-feedback',
@@ -20,6 +21,7 @@ export class FeedbackComponent implements OnInit {
   feedbackForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,9 @@ export class FeedbackComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.user = this.authService.currentUser;
+
     this.feedbackForm = this.formBuilder.group({
       jobSatisfaction: [null],
       environmentSatisfaction: [null],
@@ -41,16 +46,19 @@ export class FeedbackComponent implements OnInit {
   }
 
   submitFeedback(): void {
+
     if (!this.feedbackForm.valid) {
       this.snackBar.open('Please enter all fields', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
       return;
     }
-    this.feedbackForm.value.userId = 2; // this.authService.currentUser.id;
+
+    this.feedbackForm.value.userId = this.user.id;
     this.feedbackForm.value.jobSatisfaction = parseInt(this.feedbackForm.value.jobSatisfaction, 10);
     this.feedbackForm.value.environmentSatisfaction = parseInt(this.feedbackForm.value.environmentSatisfaction, 10);
     this.feedbackForm.value.workLifeBalance = parseInt(this.feedbackForm.value.workLifeBalance, 10);
@@ -59,6 +67,7 @@ export class FeedbackComponent implements OnInit {
       this.snackBar.open('Feedback submitted', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
@@ -67,6 +76,7 @@ export class FeedbackComponent implements OnInit {
       this.snackBar.open('Could not submit feedback', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

@@ -9,6 +9,5 @@ namespace TurnoverPredictorAPI.Data
         public DbSet<User> Users { get; set; }
         public DbSet<UserPerformance> UserPerformances { get; set; }
         public DbSet<UserFeedback> UserFeedbacks { get; set; }
-        public DbSet<UserCompensation> UserCompensations { get; set; }
     }
 }

@@ -10,6 +10,7 @@ import { MustMatch } from '../_helpers/must-match.validator';
 import { PerformanceService } from '../_services/performance.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { User } from '../_models/User';
 
 @Component({
   selector: 'app-edit-job-desc',
@@ -23,6 +24,7 @@ export class EditJobDescComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   userId: number;
+  managers: User[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -43,7 +45,12 @@ export class EditJobDescComponent implements OnInit {
       department: [null],
       managerId: [null],
     });
-    console.log('in dilg', this.userId);
+
+    this.userService.getManagers().subscribe((managers: User[]) => {
+      this.managers = managers;
+    }, error => {
+      console.log('Could not get managers');
+    });
   }
 
   updateJobDescription(): void {
@@ -52,11 +59,13 @@ export class EditJobDescComponent implements OnInit {
     }
     this.editJDForm.value.id = this.userId;
     this.editJDForm.value.managerId = parseInt(this.editJDForm.value.managerId, 10);
+    this.editJDForm.value.jobLevel = parseInt(this.editJDForm.value.jobLevel, 10);
     console.log('rray', this.editJDForm.value);
     this.userService.updateJobDesc(this.editJDForm.value).subscribe((response) => {
       this.snackBar.open('Job description updated', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
@@ -65,6 +74,7 @@ export class EditJobDescComponent implements OnInit {
       this.snackBar.open('Could not update job description', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

@@ -31,6 +31,22 @@ namespace TurnoverPredictorAPI.Controllers
             var users = await UserRepo.GetUsers();          
             return Ok(Mapper.Map<IEnumerable<UserAppDto>>(users));
         }
+
+        [HttpGet]
+        [Route("compall")]
+        public async Task<IActionResult> GetUsersWithCompensation()
+        {
+            var users = await UserRepo.GetUsers();        
+            return Ok(Mapper.Map<IEnumerable<UserCompAppDto>>(users));
+        }
+
+        [HttpGet]
+        [Route("managers")]
+        public async Task<IActionResult> GetManagers()
+        {
+            var users = await UserRepo.GetManagers();        
+            return Ok(Mapper.Map<IEnumerable<UserAppDto>>(users));
+        }
         
         [HttpGet]
         [Route("modellist")]
@@ -120,5 +136,24 @@ namespace TurnoverPredictorAPI.Controllers
                 return StatusCode(500, "Could not send feedback. Please try again later!");
             }            
         }
+
+        [HttpPost]
+        [Route("compensations/submit")]
+        public async Task<IActionResult> SubmitCompensation(UserCompUpdateDto userCompDto)
+        {
+            try
+            {
+                var compensation = await UserRepo.SubmitUserCompensation(userCompDto); 
+                return Created(
+                    compensation.UserId.ToString(),
+                    compensation
+                );
+            }
+            catch(Exception)
+            {
+                return StatusCode(500, "Could not submit compensation info. Please try again later!");
+            }            
+        }
     }
+    
 }

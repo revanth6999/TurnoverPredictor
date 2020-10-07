@@ -1,32 +1,41 @@
 <mat-sidenav-container>
-  <mat-sidenav [opened]="false"> 
-    <!-- <img class="logo" src="../assets/icon.png"> -->
+  <mat-sidenav *ngIf="loggedIn()" [(opened)]="opened" mode="side"> 
+    <img class="logo" src="../assets/icon.png">
     <mat-divider></mat-divider>
     <mat-list>
-      <a mat-list-item [routerLink]="['/dashboard']" disableRipple>
-        <mat-icon color="primary">dashboard</mat-icon> Dashboard
+      <a mat-list-item [routerLink]="['/profile']" disableRipple>
+        <mat-icon color="primary">dashboard</mat-icon> Profile
       </a>
-      <a mat-list-item [routerLink]="['/leave/new']" disableRipple>
-        <mat-icon color="primary">book_online</mat-icon> Apply leave request
+
+      <!-- <a *ngIf="this.authService.currentUser.jobRole === 'Manager'" mat-list-item [routerLink]="['/team']" disableRipple>
+        <mat-icon color="primary">book_online</mat-icon> Your team
       </a>
-      <a mat-list-item [routerLink]="['/entitlement']" disableRipple>
-        <mat-icon color="primary">timeline</mat-icon> Leave entitlement
+
+      <a *ngIf="this.authService.currentUser.jobRole === 'HR'" mat-list-item [routerLink]="['/employees']" disableRipple>
+        <mat-icon color="primary">timeline</mat-icon> All employees
+      </a> -->
+
+      <!-- TEST CODE - ABOVE CODE FOR PRODUCTION -->
+
+      <a mat-list-item [routerLink]="['/team']" disableRipple>
+        <mat-icon color="primary">book_online</mat-icon> Your team
       </a>
-      <a mat-list-item [routerLink]="['/history']" disableRipple>
-        <mat-icon color="primary">history</mat-icon> Leave  history
+      <a mat-list-item [routerLink]="['/employees']" disableRipple>
+        <mat-icon color="primary">timeline</mat-icon> All employees
       </a>
-      <a mat-list-item [routerLink]="['/requests']" disableRipple>
-        <mat-icon color="primary">event</mat-icon> Requests
-      </a>
+      <!-- TEST CODE -->
+      
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-title></app-title>
-    <!-- <router-outlet></router-outlet> -->
-    <app-home></app-home><br>
-    <!-- <app-profile></app-profile> -->
-    <app-manage-employees></app-manage-employees>
-    <!-- <app-test></app-test> -->
-    <!-- <app-manage-team></app-manage-team> -->
+    <app-title (toggleOpened)="toggleSideNav($event)"></app-title>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+    <!-- <app-home></app-home><br> -->
+    <!-- <app-profile></app-profile> -->
+    <!-- <app-manage-employees></app-manage-employees> -->
+    <!-- <app-test></app-test> -->
+    <!-- <app-manage-team></app-manage-team> -->

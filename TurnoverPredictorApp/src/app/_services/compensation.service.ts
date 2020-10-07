@@ -22,6 +22,6 @@ export class CompensationService {
   // tslint:disable-next-line: typedef
   updateCompensation(model: any) {
     console.log('compensation service', model);
-    return this.http.post(this.TurnoverPredictorAPIUrl + 'compensations/submit', model, httpOptions);
+    return this.http.post(this.TurnoverPredictorAPIUrl + 'users/compensations/submit', model, httpOptions);
   }
 }

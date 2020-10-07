@@ -8,6 +8,7 @@ import { UserService } from '../_services/user.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MustMatch } from '../_helpers/must-match.validator';
+import { User } from '../_models/User';
 
 @Component({
   selector: 'app-profile',
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,33 +40,39 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.user = this.authService.currentUser;
+
     this.profileForm = this.formBuilder.group({
-      dateOfBirth: [null],
-      gender: [null],
-      education: [null],
-      educationField: [null],
-      maritalStatus: [null],
-      numCompaniesWorked: [null],
-      totalWorkingYears: [null],
-      distanceFromHome: [null],
+      dateOfBirth: [this.user.dateOfBirth],
+      gender: [this.user.gender],
+      education: [this.user.education.toString(10)],
+      educationField: [this.user.educationField],
+      maritalStatus: [this.user.maritalStatus],
+      numCompaniesWorked: [this.user.numCompaniesWorked],
+      totalWorkingYears: [this.user.totalWorkingYears],
+      distanceFromHome: [this.user.distanceFromHome],
     });
     console.log(this.authService.currentUser);
   }
 
   updateProfile(): void {
-    this.profileForm.value.id = 2; // this.authService.currentUser.id;
+    this.profileForm.value.id = this.user.id;
     console.log(this.profileForm.value);
+    this.profileForm.value.education = parseInt(this.profileForm.value.education, 10);
     this.userService.updateUserProfile(this.profileForm.value).subscribe(() => {
       this.snackBar.open('Profile updated', '',
       {
         duration: 2000,
+        panelClass: ['my-snackbar'],
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
       });
+      this.authService.updateUser();
     }, error => {
       this.snackBar.open('Profile update failed', '',
       {
         duration: 2000,
+        panelClass: ['my-snackbar'],
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
       });

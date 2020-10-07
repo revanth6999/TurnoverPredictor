@@ -42,7 +42,6 @@ export class EditCompensationComponent implements OnInit {
       businessTravel: [null],
       annualIncome: [null],
       percentSalaryHike: [null],
-      dailyRate: [null],
       stockOptionLevel: [null]
     });
     console.log('in dilg', this.userId);
@@ -55,13 +54,13 @@ export class EditCompensationComponent implements OnInit {
     this.editCompForm.value.userId = this.userId;
     this.editCompForm.value.annualIncome = parseInt(this.editCompForm.value.annualIncome, 10);
     this.editCompForm.value.percentSalaryHike = parseInt(this.editCompForm.value.percentSalaryHike, 10);
-    this.editCompForm.value.dailyRate = parseInt(this.editCompForm.value.dailyRate, 10);
     this.editCompForm.value.stockOptionLevel = parseInt(this.editCompForm.value.stockOptionLevel, 10);
     console.log('rray2', this.editCompForm.value);
     this.compensationService.updateCompensation(this.editCompForm.value).subscribe((response) => {
       this.snackBar.open('Compensation details updated', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
@@ -70,6 +69,7 @@ export class EditCompensationComponent implements OnInit {
       this.snackBar.open('Could not update compensation details', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

@@ -52,19 +52,13 @@ export class PerformanceReviewComponent implements OnInit {
       this.snackBar.open('Please enter all fields', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
       return;
     }
     this.performanceForm.value.userId = this.userId; // this.authService.currentUser.id;
-    this.performanceForm.value.overTime = parseInt(this.performanceForm.value.overTime, 10);
-    if (this.performanceForm.value.overTime === 1) {
-      this.performanceForm.value.overTime = true;
-    }
-    else{
-      this.performanceForm.value.overTime = false;
-    }
     this.performanceForm.value.performanceRating = parseInt(this.performanceForm.value.performanceRating, 10);
     this.performanceForm.value.jobInvolvement = parseInt(this.performanceForm.value.jobInvolvement, 10);
     console.log(this.performanceForm.value);
@@ -72,6 +66,7 @@ export class PerformanceReviewComponent implements OnInit {
       this.snackBar.open('Performance review submitted', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
@@ -80,6 +75,7 @@ export class PerformanceReviewComponent implements OnInit {
       this.snackBar.open('Could not submit performance review', '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

@@ -5,27 +5,47 @@
             <div>
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Job Role</mat-label>
-                    <input matInput formControlName="jobRole" required> 
+                    <mat-select formControlName="jobRole" required>
+                        <mat-option value="Sales Executive">Sales Executive</mat-option>
+                        <mat-option value="Sales Representative">Sales Representative</mat-option>                        
+                        <mat-option value="Research Scientist">Research Scientist</mat-option>
+                        <mat-option value="Research Director">Research Director</mat-option>
+                        <mat-option value="Laboratory Technician">Laboratory Technician</mat-option>
+                        <mat-option value="Manufacturing Director">Manufacturing Director</mat-option>
+                        <mat-option value="Healthcare Representative">Healthcare Representative</mat-option>
+                        <mat-option value="Human Resources">Human Resources</mat-option>
+                        <mat-option value="Manager">Manager</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="editJDForm.controls.jobRole.touched && editJDForm.controls.jobRole.invalid">
                         <span *ngIf="editJDForm.controls.jobRole.errors.required">Job Role is required</span>
                     </mat-error>
-                </mat-form-field> 
+                </mat-form-field>
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Job Level</mat-label>
-                    <input matInput formControlName="jobLevel" required> 
+                    <mat-select formControlName="jobLevel" required>
+                        <mat-option value="1">Associate</mat-option>
+                        <mat-option value="2">Senior</mat-option>                        
+                        <mat-option value="3">Lead</mat-option>
+                        <mat-option value="4">Director</mat-option>
+                        <mat-option value="5">Senior Director</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="editJDForm.controls.jobLevel.touched && editJDForm.controls.jobLevel.invalid">
                         <span *ngIf="editJDForm.controls.jobLevel.errors.required">Job Level is required</span>
                     </mat-error>
-                </mat-form-field> 
+                </mat-form-field>
             </div>
             <div>
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Department</mat-label>
-                    <input matInput formControlName="department" required> 
+                    <mat-select formControlName="department" required>
+                        <mat-option value="Research & Development">Research & Development</mat-option>                        
+                        <mat-option value="Sales">Sales</mat-option>
+                        <mat-option value="Human Resources">Human Resources</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="editJDForm.controls.department.touched && editJDForm.controls.department.invalid">
-                        <span *ngIf="editJDForm.controls.department.errors.required">Department is required</span>
+                        <span *ngIf="editJDForm.controls.department.errors.required">Job Level is required</span>
                     </mat-error>
-                </mat-form-field> 
+                </mat-form-field>
             </div>
             <div>
                 <mat-form-field color="primary" hideRequiredMarker>
@@ -35,6 +55,19 @@
                         <span *ngIf="editJDForm.controls.managerId.errors.required">Manager ID is required</span>
                     </mat-error>
                 </mat-form-field>
+
+
+                <!-- 
+                    --- MANAGER INPUT FIELD UNDER IMPROVEMENT --- RAY HERE
+                        
+                <mat-form-field color="primary" hideRequiredMarker>
+                    <mat-label>Manager name</mat-label>
+                    <mat-select formControlName="managerId">
+                        <mat-option *ngFor="let manager of managers" [value]="manager.id">
+                            {{manager.firstName + " " + manager.lastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field> -->
             </div>
         </div>
     </form>

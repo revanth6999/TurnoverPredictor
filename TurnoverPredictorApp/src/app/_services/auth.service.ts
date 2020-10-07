@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
@@ -7,11 +7,17 @@ import { Router } from '@angular/router';
 import { User } from '../_models/User';
 import { UserService } from './user.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: 'Bearer ' + localStorage.getItem('token')
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl + 'auth/';
+  TurnoverPredictorAPIAuthUrl = environment.TurnoverPredictorAPIUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
@@ -20,7 +26,7 @@ export class AuthService {
   // tslint:disable-next-line: typedef
   login(model: any) {
     return this.http
-      .post(this.TurnoverPredictorAPIUrl + 'login', model)
+      .post(this.TurnoverPredictorAPIAuthUrl + 'login', model)
       .pipe(
         map((response: any) => {
           const loginResponse = response;
@@ -35,7 +41,17 @@ export class AuthService {
   }
   // tslint:disable-next-line: typedef
   register(model: any) {
-    return this.http.post(this.TurnoverPredictorAPIUrl + 'register', model);
+    return this.http.post(this.TurnoverPredictorAPIAuthUrl + 'register', model);
+  }
+
+  updateUser(): void {
+    this.http.get<User>(environment.TurnoverPredictorAPIUrl + 'users/' +
+     this.currentUser.id, httpOptions).subscribe((user: User) => {
+      localStorage.setItem('user', JSON.stringify(user));
+      this.currentUser = user;
+    }, error => {
+      console.log('get user error');
+    });
   }
 
   loggedIn(): boolean {

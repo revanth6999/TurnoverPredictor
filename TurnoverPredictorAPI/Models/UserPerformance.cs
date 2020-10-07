@@ -7,7 +7,7 @@ namespace TurnoverPredictorAPI.Models
         public int Id { get; set; }
         public int UserId { get; set; }
         public int PerformanceRating { get; set; }
-        public Boolean OverTime { get; set; }
+        public string OverTime { get; set; }
         public int JobInvolvement { get; set; }
         public int TrainingTimesLastYear { get; set; }
         public int ManagerId { get; set; }

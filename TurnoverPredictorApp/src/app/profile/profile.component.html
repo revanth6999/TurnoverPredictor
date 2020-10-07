@@ -1,11 +1,11 @@
 <img src="../../assets/propic.jpg">
 <div id="user-title">
-    <div class="mat-display-1">Revanth Nallam</div>
-    <div class="mat-title">Associate Application Developer, iHCM</div>
-    <div class="mat-title">revanth@adp.com</div>
+    <div class="mat-display-1">{{this.user.firstName + ' ' + this.user.lastName}}</div>
+    <div *ngIf="this.user.jobRole !== null && this.user.department !== null" class="mat-title">{{this.user.jobRole + ', ' + this.user.department}}</div>
+    <div class="mat-title">{{this.user.email}}</div>
 </div>
 <mat-divider></mat-divider>
-<button id="feedbackBtn" mat-raised-button (click)="openFeedbackDlg()">Give Feedback</button>
+<button id="feedbackBtn" mat-raised-button color="accent" (click)="openFeedbackDlg()">Give Feedback <mat-icon>feedback</mat-icon></button>
 <form [formGroup]="profileForm" (submit)="updateProfile()" class="profile-form">
     <div>
         <div id="form-title" class="mat-title">Update your profile</div>
@@ -30,8 +30,8 @@
             <mat-form-field  color="primary">
                 <mat-label>Highest degree</mat-label>
                 <mat-select formControlName="education">
-                    <mat-option value="1" selected>Secondary</mat-option>
-                    <mat-option value="2" selected>Higher Secondary</mat-option>
+                    <mat-option value="1">Secondary</mat-option>
+                    <mat-option value="2">Higher Secondary</mat-option>
                     <mat-option value="3">Under graduate</mat-option>
                     <mat-option value="4">Post graduate</mat-option>
                     <mat-option value="5">Doctorate</mat-option>

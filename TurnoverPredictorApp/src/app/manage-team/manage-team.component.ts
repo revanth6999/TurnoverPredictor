@@ -2,31 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { PerformanceReviewComponent } from '../performance-review/performance-review.component';
-
-export interface User {
-  ID: number;
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  JobRole: string;
-  JobLevel: string;
-  Department: string;
-}
-
-const users: User[] = [
-  {ID: 1, FirstName: 'Hydrogn', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM'},
-  {ID: 2, FirstName: 'Helium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM'},
-  {ID: 3, FirstName: 'Lithium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM'},
-  {ID: 4, FirstName: 'Beryllium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM'},
-  {ID: 5, FirstName: 'Boron', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM'},
-  {ID: 6, FirstName: 'Carbon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-   Department: 'iHCM'},
-];
+import { User } from '../_models/User';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-manage-team',
@@ -42,22 +19,57 @@ const users: User[] = [
 })
 export class ManageTeamComponent implements OnInit {
 
-  displayedColumns: string[] = ['ID', 'FirstName', 'LastName', 'Email', 'JobRole', 'JobLevel', 'Department'];
-  dataSource = users;
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'jobRole', 'jobLevel', 'department'];
+  dataSource: any;
   expandedUser: User | null;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUsers().subscribe((users: User[]) => {
+      this.dataSource = users;
+    }, error => {
+      console.log('get users error');
+    });
   }
 
   openPerfomanceDlg(element): void {
     console.log(element);
     this.dialog.open(PerformanceReviewComponent, {
       data: {
-        userId: element.ID,
+        userId: element.id,
       }
     });
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const users: User[] = [
+  //   {ID: 1, FirstName: 'Hydrogn', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //   Department: 'iHCM'},
+  //   {ID: 2, FirstName: 'Helium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //   Department: 'iHCM'},
+  //   {ID: 3, FirstName: 'Lithium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //   Department: 'iHCM'},
+  //   {ID: 4, FirstName: 'Beryllium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //   Department: 'iHCM'},
+  //   {ID: 5, FirstName: 'Boron', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //   Department: 'iHCM'},
+  //   {ID: 6, FirstName: 'Carbon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+  //    Department: 'iHCM'},
+  // ];
+

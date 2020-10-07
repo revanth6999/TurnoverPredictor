@@ -9,7 +9,7 @@ using TurnoverPredictorAPI.Data;
 namespace TurnoverPredictorAPI.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201007125001_InitialCreate")]
+    [Migration("20201007211116_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,12 @@ namespace TurnoverPredictorAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<float>("AnnualIncome")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("BusinessTravel")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
@@ -36,8 +42,8 @@ namespace TurnoverPredictorAPI.Data.Migrations
                     b.Property<float>("DistanceFromHome")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Education")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Education")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("EducationField")
                         .HasColumnType("TEXT");
@@ -51,8 +57,8 @@ namespace TurnoverPredictorAPI.Data.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("JobLevel")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("JobLevel")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("JobRole")
                         .HasColumnType("TEXT");
@@ -75,44 +81,18 @@ namespace TurnoverPredictorAPI.Data.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
 
-                    b.Property<int>("TotalWorkingYears")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("TurnoverPredictorAPI.Models.UserCompensation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float>("AnnualIncome")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("BusinessTravel")
-                        .HasColumnType("TEXT");
-
-                    b.Property<float>("DailyRate")
-                        .HasColumnType("REAL");
-
-                    b.Property<DateTime>("Datetime")
-                        .HasColumnType("TEXT");
-
                     b.Property<float>("PercentSalaryHike")
                         .HasColumnType("REAL");
 
                     b.Property<int>("StockOptionLevel")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("TotalWorkingYears")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserCompensations");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TurnoverPredictorAPI.Models.UserFeedback", b =>
@@ -165,8 +145,8 @@ namespace TurnoverPredictorAPI.Data.Migrations
                     b.Property<int>("ManagerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("OverTime")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("OverTime")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("PerformanceRating")
                         .HasColumnType("INTEGER");

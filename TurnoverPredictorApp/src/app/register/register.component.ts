@@ -58,6 +58,7 @@ export class RegisterComponent implements OnInit {
       this.snackBar.open('Registration successful', '',
         {
           duration: 2000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
@@ -67,6 +68,7 @@ export class RegisterComponent implements OnInit {
       this.snackBar.open(error.error, '',
         {
           duration: 3000,
+          panelClass: ['my-snackbar'],
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });

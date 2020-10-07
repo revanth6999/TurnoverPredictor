@@ -1,4 +1,4 @@
-export interface User {
+export interface UserHRModel {
     id: number;
     firstName: string;
     lastName: string;
@@ -16,4 +16,8 @@ export interface User {
     dateOfJoining: string;
     numCompaniesWorked: number;
     totalWorkingYears: number;
+    businessTravel: string;
+    annualIncome: number;
+    percentSalaryHike: number;
+    stockOptionLevel: number;
 }

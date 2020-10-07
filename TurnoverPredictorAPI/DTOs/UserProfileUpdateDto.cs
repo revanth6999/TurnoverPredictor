@@ -6,7 +6,7 @@ namespace TurnoverPredictorAPI.DTOs
     {
         public DateTime DateOfBirth { get; set; }     
         public float DistanceFromHome { get; set; }
-        public string Education { get; set; }
+        public int Education { get; set; }
         public string EducationField { get; set; }
         public string Gender { get; set; }
         public string MaritalStatus { get; set; }

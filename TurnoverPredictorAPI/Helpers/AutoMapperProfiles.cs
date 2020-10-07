@@ -10,6 +10,8 @@ namespace TurnoverPredictorAPI.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<User, UserAppDto>();
+            CreateMap<User, UserCompUpdateDto>();
+            CreateMap<User, UserCompAppDto>();
         }
     }
 }

@@ -41,7 +41,6 @@ namespace TurnoverPredictorAPI
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<IPerformanceRepository, PerformanceRepository>();
-            services.AddScoped<ICompensationRepository, CompensationRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => {

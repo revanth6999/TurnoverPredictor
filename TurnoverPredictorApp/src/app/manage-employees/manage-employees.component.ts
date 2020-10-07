@@ -3,44 +3,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCompensationComponent } from '../edit-compensation/edit-compensation.component';
 import { EditJobDescComponent } from '../edit-job-desc/edit-job-desc.component';
+import { UserService } from '../_services/user.service';
+import { User } from '../_models/User';
+import { UserHRModel } from '../_models/UserHRModel';
 
-export interface User {
-  ID: number;
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  JobRole: string;
-  JobLevel: string;
-  Department: string;
-  ManagerId: number;
-  AnnualIncome: number;
-  StockOptionLevel: number;
-  DailyRate: number;
-  PercentSalaryHike: number;
-}
 
-const users: User[] = [
-  {ID: 1, FirstName: 'Hydrogn', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 2, FirstName: 'Helium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 3, FirstName: 'Lithium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 4, FirstName: 'Beryllium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 5, FirstName: 'Boron', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 6, FirstName: 'Carbon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 7, FirstName: 'Nitrogen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 8, FirstName: 'Oxygen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 9, FirstName: 'Fluorine', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-  {ID: 10, FirstName: 'Neon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 'associate',
-  Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-];
 
 @Component({
   selector: 'app-manage-employees',
@@ -57,20 +24,30 @@ const users: User[] = [
 
 export class ManageEmployeesComponent implements OnInit  {
 
-  displayedColumns: string[] = ['ID', 'FirstName', 'LastName', 'Email', 'JobRole', 'JobLevel', 'Department', 'ManagerId', 'AnnualIncome', 'PercentSalaryHike', 'StockOptionLevel', 'DailyRate'];
-  dataSource = users;
+  users: UserHRModel[];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'jobRole', 'jobLevel', 'department', 'managerId', 'annualIncome', 'percentSalaryHike', 'stockOptionLevel'];
+  dataSource: any;
   expandedUser: User | null;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh(): void {
+    this.userService.getUsersWithCompensation().subscribe((users: UserHRModel[]) => {
+      this.dataSource = users;
+    }, error => {
+      console.log('get users error');
+    });
   }
 
   openJobDescDlg(element): void {
     console.log(element);
     this.dialog.open(EditJobDescComponent, {
       data: {
-        userId: element.ID,
+        userId: element.id,
       }
     });
   }
@@ -79,8 +56,40 @@ export class ManageEmployeesComponent implements OnInit  {
     console.log(element);
     this.dialog.open(EditCompensationComponent, {
       data: {
-        userId: element.ID,
+        userId: element.id,
       }
     });
   }
 }
+
+
+
+
+
+
+
+
+
+
+// const users: User[] = [
+//   {ID: 1, FirstName: 'Hydrogn', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 2, FirstName: 'Helium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 3, FirstName: 'Lithium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 4, FirstName: 'Beryllium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 5, FirstName: 'Boron', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 6, FirstName: 'Carbon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//    Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 7, FirstName: 'Nitrogen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 8, FirstName: 'Oxygen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 9, FirstName: 'Fluorine', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+//   {ID: 10, FirstName: 'Neon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
+//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
+// ];

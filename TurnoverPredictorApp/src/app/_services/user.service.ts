@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../_models/User';
+import { UserHRModel } from '../_models/UserHRModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,6 +23,14 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.TurnoverPredictorAPIUrl + 'users', httpOptions);
+  }
+
+  getManagers(): Observable<User[]> {
+    return this.http.get<User[]>(this.TurnoverPredictorAPIUrl + 'users/managers', httpOptions);
+  }
+
+  getUsersWithCompensation(): Observable<UserHRModel[]> {
+    return this.http.get<UserHRModel[]>(this.TurnoverPredictorAPIUrl + 'users/compall', httpOptions);
   }
 
   getUser(id): Observable<User> {

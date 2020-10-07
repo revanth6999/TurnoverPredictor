@@ -5,7 +5,11 @@
             <div>
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Business Travel</mat-label>
-                    <input matInput formControlName="businessTravel" required> 
+                    <mat-select formControlName="businessTravel" required>
+                        <mat-option value="Non-Travel">Non-Travel</mat-option>                        
+                        <mat-option value="Travel Frequently">Travel Frequently</mat-option>
+                        <mat-option value="Travel Rarely">Travel Rarely</mat-option>
+                    </mat-select>
                     <mat-error *ngIf="editCompForm.controls.businessTravel.touched && editCompForm.controls.businessTravel.invalid">
                         <span *ngIf="editCompForm.controls.businessTravel.errors.required">Business travel is required</span>
                     </mat-error>
@@ -28,13 +32,6 @@
                 </mat-form-field> 
             </div>
             <div>
-                <mat-form-field color="primary" hideRequiredMarker>
-                    <mat-label>Daily Rate</mat-label>
-                    <input type="number" min="0" matInput formControlName="dailyRate" required> 
-                    <mat-error *ngIf="editCompForm.controls.dailyRate.touched && editCompForm.controls.dailyRate.invalid">
-                        <span *ngIf="editCompForm.controls.dailyRate.errors.required">Daily rate is required</span>
-                    </mat-error>
-                </mat-form-field> 
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Stock Option Level</mat-label>
                     <input type="number" min="0" matInput formControlName="stockOptionLevel" required> 

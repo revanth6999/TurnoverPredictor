@@ -24,12 +24,10 @@ namespace TurnoverPredictorAPI.Data
             var users = (
                 from u in Context.Users
                  join p in Context.UserPerformances on u.Id equals p.UserId
-                 join c in Context.UserCompensations on p.UserId equals c.UserId
-                 join f in Context.UserFeedbacks on c.UserId equals f.UserId
+                 join f in Context.UserFeedbacks on p.UserId equals f.UserId
                  select new UserDto {
                     Age = DateTimeHandler.CalculateYears(u.DateOfBirth),
-                    BusinessTravel = c.BusinessTravel,
-                    DailyRate = c.DailyRate,
+                    BusinessTravel = u.BusinessTravel,
                     Department = u.Department,
                     DistanceFromHome = u.DistanceFromHome,
                     Education = u.Education,
@@ -41,12 +39,12 @@ namespace TurnoverPredictorAPI.Data
                     JobRole = u.JobRole,
                     JobSatisfaction = f.JobSatisfaction,
                     MaritalStatus = u.MaritalStatus,
-                    AnnualIncome = c.AnnualIncome,
+                    AnnualIncome = u.AnnualIncome,
                     NumCompaniesWorked = u.NumCompaniesWorked,
                     OverTime = p.OverTime,
-                    PercentSalaryHike = c.PercentSalaryHike,
+                    PercentSalaryHike = u.PercentSalaryHike,
                     PerformanceRating = p.PerformanceRating,
-                    StockOptionLevel = c.StockOptionLevel,
+                    StockOptionLevel = u.StockOptionLevel,
                     TotalWorkingYears = u.TotalWorkingYears,
                     TrainingTimesLastYear = p.TrainingTimesLastYear,
                     WorkLifeBalance = f.WorkLifeBalance,
@@ -58,6 +56,12 @@ namespace TurnoverPredictorAPI.Data
             );            
             return users;
         }
+
+        // public async Task<IEnumerable<User>> GetUsersWithCompensation()
+        // {
+        //     var users = await Context.Users.ToListAsync();
+        //     return users;
+        // }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -119,6 +123,37 @@ namespace TurnoverPredictorAPI.Data
         public async Task<bool> SaveAll()
         {
             return await Context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<UserCompUpdateDto> SubmitUserCompensation(UserCompUpdateDto userCompDto)
+        {
+            try
+            {
+                var compensation = await Context.Users.Where(u => u.Id == userCompDto.UserId).FirstOrDefaultAsync();
+                if(compensation == null)
+                {
+                    await Context.Users.AddAsync(compensation);
+                    await SaveAll();
+                    return Mapper.Map<UserCompUpdateDto>(compensation);
+                }
+                compensation.BusinessTravel = userCompDto.BusinessTravel;
+                compensation.AnnualIncome = userCompDto.AnnualIncome;
+                compensation.PercentSalaryHike = userCompDto.PercentSalaryHike;
+                compensation.StockOptionLevel = userCompDto.StockOptionLevel;
+                
+                await SaveAll();
+                return Mapper.Map<UserCompUpdateDto>(compensation);
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<User>> GetManagers()
+        {
+            var users = await Context.Users.Where(u => u.JobRole.Equals("Manager")).ToListAsync();
+            return users;
         }
     }
 }
