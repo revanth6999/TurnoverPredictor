@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   opened = false;
   currentUser: User;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {

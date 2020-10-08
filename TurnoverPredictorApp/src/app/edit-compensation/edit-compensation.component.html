@@ -7,8 +7,8 @@
                     <mat-label>Business Travel</mat-label>
                     <mat-select formControlName="businessTravel" required>
                         <mat-option value="Non-Travel">Non-Travel</mat-option>                        
-                        <mat-option value="Travel Frequently">Travel Frequently</mat-option>
-                        <mat-option value="Travel Rarely">Travel Rarely</mat-option>
+                        <mat-option value="Travel_Frequently">Travel Frequently</mat-option>
+                        <mat-option value="Travel_Rarely">Travel Rarely</mat-option>
                     </mat-select>
                     <mat-error *ngIf="editCompForm.controls.businessTravel.touched && editCompForm.controls.businessTravel.invalid">
                         <span *ngIf="editCompForm.controls.businessTravel.errors.required">Business travel is required</span>

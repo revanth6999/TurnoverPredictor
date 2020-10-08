@@ -29,6 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { PhotoComponent } from './photo/photo.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -46,7 +48,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
     FeedbackComponent,
     EditJobDescComponent,
     EditCompensationComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    PhotoComponent
   ],
   entryComponents: [PerformanceReviewComponent],
   imports: [
@@ -55,6 +58,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    FileUploadModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],

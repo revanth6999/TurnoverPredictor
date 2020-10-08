@@ -1,0 +1,17 @@
+img{
+    border-radius: 50%;
+    width: 200px;
+    margin-top: 3rem;
+    margin-left: 10rem;
+    display: inline-block;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 1px;
+    margin-right: 2rem;
+    margin-left: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}

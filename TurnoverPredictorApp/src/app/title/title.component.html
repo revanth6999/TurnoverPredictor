@@ -4,7 +4,7 @@
         Workforce Manager
     </div>
     <div *ngIf="loggedIn()">
-        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu" disableRipple><mat-icon>person</mat-icon> Welcome {{authService.currentUser.firstName}}<mat-icon>arrow_drop_down</mat-icon></button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu" disableRipple><mat-icon>person</mat-icon> Welcome {{this.authService.currentUser.firstName}}<mat-icon>arrow_drop_down</mat-icon></button>
         <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>

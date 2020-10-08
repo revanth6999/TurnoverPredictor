@@ -3,22 +3,29 @@
     <img class="logo" src="../assets/icon.png">
     <mat-divider></mat-divider>
     <mat-list>
+
+      
+
       <a mat-list-item [routerLink]="['/profile']" disableRipple>
         <mat-icon color="primary">contact_page
         </mat-icon> Profile
       </a>
 
-      <!-- <a *ngIf="this.authService.currentUser.jobRole === 'Manager'" mat-list-item [routerLink]="['/team']" disableRipple>
-        <mat-icon color="primary">book_online</mat-icon> Your team
+      <a *ngIf="this.authService.currentUser.jobRole === 'Manager'" mat-list-item [routerLink]="['/team']" disableRipple>
+        <mat-icon color="primary">group</mat-icon> Your team
       </a>
 
-      <a *ngIf="this.authService.currentUser.jobRole === 'HR'" mat-list-item [routerLink]="['/employees']" disableRipple>
-        <mat-icon color="primary">timeline</mat-icon> All employees
-      </a> -->
+      <a *ngIf="this.authService.currentUser.jobRole === 'Human Resources'" mat-list-item [routerLink]="['/employees']" disableRipple>
+        <mat-icon color="primary">groups</mat-icon> All employees
+      </a> 
+
+      <a *ngIf="this.authService.currentUser.jobRole === 'Human Resources'" mat-list-item [routerLink]="['/predictor']" disableRipple>
+        <mat-icon color="primary">calculate</mat-icon> Predictor
+      </a>
 
       <!-- TEST CODE - ABOVE CODE FOR PRODUCTION -->
 
-      <a mat-list-item [routerLink]="['/team']" disableRipple>
+      <!-- <a mat-list-item [routerLink]="['/team']" disableRipple>
         <mat-icon color="primary">group</mat-icon> Your team
       </a>
       <a mat-list-item [routerLink]="['/employees']" disableRipple>
@@ -26,7 +33,7 @@
       </a>
       <a mat-list-item [routerLink]="['/predictor']" disableRipple>
         <mat-icon color="primary">calculate</mat-icon> Predictor
-      </a>
+      </a> -->
 
       <!-- TEST CODE -->
       

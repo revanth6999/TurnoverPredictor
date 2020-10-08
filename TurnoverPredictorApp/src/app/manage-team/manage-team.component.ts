@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PerformanceReviewComponent } from '../performance-review/performance-review.component';
 import { User } from '../_models/User';
 import { UserService } from '../_services/user.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-manage-team',
@@ -23,10 +24,10 @@ export class ManageTeamComponent implements OnInit {
   dataSource: any;
   expandedUser: User | null;
 
-  constructor(private dialog: MatDialog, private userService: UserService) { }
+  constructor(private dialog: MatDialog, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users: User[]) => {
+    this.userService.getUsersUnderManager(this.authService.currentUser.id).subscribe((users: User[]) => {
       this.dataSource = users;
     }, error => {
       console.log('get users error');

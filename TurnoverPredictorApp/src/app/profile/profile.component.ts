@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.authService.currentUser;
-
+    console.log('ray', this.user.displayPictureUrl);
     this.profileForm = this.formBuilder.group({
       dateOfBirth: [this.user.dateOfBirth],
       gender: [this.user.gender],

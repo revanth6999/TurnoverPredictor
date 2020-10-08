@@ -1,8 +1,12 @@
 <div class="welcome-container">
     <div class="welcome mat-display-2">Welcome to Workforce Manager</div><br>
-    <div class="welcome mat-headline">Estimate the annual turnover of your organisation, plan recruitment budget and more</div><br>
-    <div class="welcome mat-title">Get started</div><br>
+    <div class="welcome mat-headline"><p style="text-align: center;">Workforce Management made easy, submit feedbacks, update job descriptions, payroll info and more</p></div><br>
+    <div class="welcome mat-headline"><p style="text-align: center;">Introducing our latest Employee Turnover Predictor</p></div><br>
+    <div *ngIf="loggedIn" class="welcome">
+        <div class="welcome mat-title" [routerLink]="['/predictor']">Check Turnover Predictor</div><br>
+    </div>
     <div *ngIf="!loggedIn" class="welcome">
+        <div class="welcome mat-title">Get started</div><br>
         <button color="accent" [routerLink]="['/register']" mat-flat-button>Register</button>
         <button color="accent" [routerLink]="['/login']" mat-stroked-button>Login</button>
     </div>

@@ -1,0 +1,16 @@
+<div *ngIf="url !== null">
+    <img [src]="url" alt="Image" />
+</div>
+<button mat-mini-fab color="accent" (click)="this.showUpload = !this.showUpload"><mat-icon>edit</mat-icon></button>
+<div *ngIf="url === null">
+  <img src="../../assets/propic.jpg">
+</div>  
+<div *ngIf="this.showUpload">
+  <button mat-raised-button>
+    <input type="file" ng2FileSelect [uploader]="uploader"/>
+  </button>
+  <button mat-raised-button color="accent" (click)="uploader.uploadAll()" disabelRipple>
+          <mat-icon>upgrade</mat-icon> Upload
+  </button>
+</div>
+  

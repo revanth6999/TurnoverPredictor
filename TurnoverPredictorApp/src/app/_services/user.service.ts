@@ -25,6 +25,10 @@ export class UserService {
     return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users', httpOptions);
   }
 
+  getUsersUnderManager(id): Observable<User[]> {
+    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/manager' + id, httpOptions);
+  }
+
   getManagers(): Observable<User[]> {
     return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/managers', httpOptions);
   }
