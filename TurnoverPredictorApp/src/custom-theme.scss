@@ -12,9 +12,9 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$TurnoverPredictorApp-primary: mat-palette($mat-blue-grey, A700);
-$TurnoverPredictorApp-lightprimary: mat-palette($mat-blue-grey, A400);
-$TurnoverPredictorApp-accent: mat-palette($mat-teal,900);
+$TurnoverPredictorApp-primary: mat-palette($mat-blue-grey, A700); // 283149
+$TurnoverPredictorApp-lightprimary: mat-palette($mat-blue-grey, A400); // 404b69
+$TurnoverPredictorApp-accent: mat-palette($mat-teal,900); //00818a
 
 // The warn palette is optional (defaults to red).
 $TurnoverPredictorApp-warn: mat-palette($mat-red);

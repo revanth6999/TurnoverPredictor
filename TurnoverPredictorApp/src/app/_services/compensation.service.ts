@@ -15,13 +15,13 @@ const httpOptions = {
 
 export class CompensationService {
 
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl;
+  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl;
 
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
   updateCompensation(model: any) {
     console.log('compensation service', model);
-    return this.http.post(this.TurnoverPredictorAPIUrl + 'users/compensations/submit', model, httpOptions);
+    return this.http.post(this.WorkforceManagerAPIUrl + 'users/compensations/submit', model, httpOptions);
   }
 }

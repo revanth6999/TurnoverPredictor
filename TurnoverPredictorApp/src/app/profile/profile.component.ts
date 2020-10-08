@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   user: User;
 
   constructor(

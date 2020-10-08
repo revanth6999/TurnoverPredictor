@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
           horizontalPosition: this.horizontalPosition,
           verticalPosition: this.verticalPosition,
         });
-
-        
       this.router.navigate(['/profile']);
       }, error => {
         this.snackBar.open('Incorrect username or password', '',

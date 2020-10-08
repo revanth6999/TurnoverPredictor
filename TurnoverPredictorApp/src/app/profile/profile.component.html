@@ -39,7 +39,14 @@
             </mat-form-field>
             <mat-form-field color="primary">
                 <mat-label>Education Field</mat-label>
-                <input matInput formControlName="educationField">
+                <mat-select formControlName="educationField">
+                    <mat-option value="Technical Degree">Technical Degree</mat-option>
+                    <mat-option value="Medical">Medical</mat-option>                        
+                    <mat-option value="Marketing">Marketing</mat-option>
+                    <mat-option value="Life Sciences">Life Sciences</mat-option>
+                    <mat-option value="Human Resources">Human Resources</mat-option>
+                    <mat-option value="Other">Other</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
         <div>
@@ -66,6 +73,7 @@
             <mat-form-field  color="primary">
                 <mat-label>Distance from home</mat-label>
                 <input type="number" min="0" matInput formControlName="distanceFromHome">
+                <span matSuffix>km(s)</span>
             </mat-form-field>
         </div>
     </div>

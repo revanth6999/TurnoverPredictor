@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { ManageTeamComponent } from './manage-team/manage-team.component';
 import { ManageEmployeesComponent } from './manage-employees/manage-employees.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CalculatorComponent } from './calculator/calculator.component';
 import { AuthGuard } from './_guards/AuthGuard';
 
 export const appRoutes: Routes = [
@@ -15,6 +16,7 @@ export const appRoutes: Routes = [
     { path: 'team', component: ManageTeamComponent, canActivate: [AuthGuard] },
     { path: 'employees', component: ManageEmployeesComponent, canActivate: [AuthGuard] },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'predictor', component: CalculatorComponent, canActivate: [AuthGuard] },
     // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];

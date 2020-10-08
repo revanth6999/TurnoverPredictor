@@ -16,4 +16,5 @@ export interface User {
     dateOfJoining: string;
     numCompaniesWorked: number;
     totalWorkingYears: number;
+    displayPictureUrl: string;
 }

@@ -21,7 +21,7 @@ export class PerformanceReviewComponent implements OnInit {
 
   performanceForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   userId: number;
 
   constructor(

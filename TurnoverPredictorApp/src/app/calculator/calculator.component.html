@@ -1,0 +1,115 @@
+<div class="welcome-container">
+    <div class="welcome mat-display-2">'Machine learning - The next step in Workforce Management'</div><br>
+    <div class="welcome mat-display-1">Estimate the annual employee turnover for the next fiscal year!</div><br>
+    <!-- <div class="welcome mat-headline">Check out the recruitment budget calculator</div><br> -->
+    <div class="welcome">
+        <button color="accent" (click)="predictET()" mat-flat-button>Predict employee turnover</button><br>
+        <button color="accent" *ngIf="!this.showCalculator" (click)="this.showCalculator = true" mat-stroked-button>Show Calculator</button>
+        <button color="accent" *ngIf="this.showCalculator" (click)="this.showCalculator = false" mat-stroked-button>Hide Calculator</button>
+    </div><br>
+    <div *ngIf="this.showPrediction" class="welcome">
+        <div class="mat-title">Employee turnover is {{this.employeeTurnover}} %</div>
+    </div>
+    <!-- <div class="welcome">
+        <button color="primary" [routerLink]="['/dashboard']" mat-flat-button>Go to dashboard</button>
+    </div> -->
+</div>
+
+<form *ngIf="showCalculator" [formGroup]="calculatorForm" (submit)="calculate()" class="calculator-form">
+    <div id="titleCalc" class="mat-title">Recruitment budget estimator</div>
+    <div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Recruitment team size</mat-label>
+                <input type="number" min="1" matInput formControlName="teamSize" required> 
+                <mat-error *ngIf="calculatorForm.controls.teamSize.touched && calculatorForm.controls.teamSize.invalid">
+                    <span *ngIf="calculatorForm.controls.teamSize.errors.required">Recruitment team size is required</span>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Number of days for recruitment</mat-label>
+                <input type="number" min="1" matInput formControlName="days" required> 
+                <mat-error *ngIf="calculatorForm.controls.days.touched && calculatorForm.controls.days.invalid">
+                    <span *ngIf="calculatorForm.controls.days.errors.required">Number of days for recruitment is required</span>
+                </mat-error>
+            </mat-form-field> 
+        </div>
+        <mat-divider></mat-divider>
+        <div class="mat-title">Group expenses</div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Travel Expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="grpTravel" required> 
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.grpTravel.touched && calculatorForm.controls.grpTravel.invalid">
+                    <span *ngIf="calculatorForm.controls.grpTravel.errors.required">Group travel expenses is required</span>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Accomodation expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="grpAcc" required> 
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.grpAcc.touched && calculatorForm.controls.grpAcc.invalid">
+                    <span *ngIf="calculatorForm.controls.grpAcc.errors.required">Group accomodation expenses is required</span>
+                </mat-error>
+            </mat-form-field> 
+        </div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Food expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="grpFood" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.grpFood.touched && calculatorForm.controls.grpFood.invalid">
+                    <span *ngIf="calculatorForm.controls.grpFood.errors.required">Group food expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Third party expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="thirdParty" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.thirdParty.touched && calculatorForm.controls.thirdParty.invalid">
+                    <span *ngIf="calculatorForm.controls.thirdParty.errors.required">Third party expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="mat-title">Individual expenses</div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Travel expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="indTravel" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.indTravel.touched && calculatorForm.controls.indTravel.invalid">
+                    <span *ngIf="calculatorForm.controls.indTravel.errors.required">Individual travel expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Accomodation expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="indAcc" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.indAcc.touched && calculatorForm.controls.indAcc.invalid">
+                    <span *ngIf="calculatorForm.controls.indAcc.errors.required">Individual accomodation expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Food expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="indTravel" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.indFood.touched && calculatorForm.controls.indFood.invalid">
+                    <span *ngIf="calculatorForm.controls.indFood.errors.required">Individual travel expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Other expenses</mat-label>
+                <input type="number" min="0" matInput formControlName="indAcc" required>
+                <span matPrefix>&#x20B9;&nbsp;</span>
+                <mat-error *ngIf="calculatorForm.controls.indOther.touched && calculatorForm.controls.indOther.invalid">
+                    <span *ngIf="calculatorForm.controls.indAcc.errors.required">Individual accomodation expenses is required</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <button mat-raised-button color="accent" type="submit">Calculate</button>
+</form>

@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" class="navbar">
     <div>
         <button *ngIf="loggedIn()" mat-flat-button color="primary" (click)="toggle()" disableRipple><mat-icon>menu</mat-icon></button>
-        Turnover Predictor
+        Workforce Manager
     </div>
     <div *ngIf="loggedIn()">
         <button mat-flat-button color="primary" [matMenuTriggerFor]="menu" disableRipple><mat-icon>person</mat-icon> Welcome {{authService.currentUser.firstName}}<mat-icon>arrow_drop_down</mat-icon></button>

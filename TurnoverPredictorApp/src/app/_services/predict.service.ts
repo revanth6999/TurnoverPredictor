@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { User } from '../_models/User';
+import { UserService } from './user.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -12,16 +16,15 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+export class PredictService {
 
-export class FeedbackService {
-
-  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl;
+  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl + 'predict/';
 
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
-  submitFeedback(model: any) {
-    console.log('feedback service', model);
-    return this.http.post(this.WorkforceManagerAPIUrl + 'feedbacks/submit', model, httpOptions);
+  predictEmployeeTurnover() {
+    return this.http.get(this.WorkforceManagerAPIUrl);
   }
+
 }

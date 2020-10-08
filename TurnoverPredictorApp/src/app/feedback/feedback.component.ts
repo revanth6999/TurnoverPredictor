@@ -20,7 +20,7 @@ export class FeedbackComponent implements OnInit {
 
   feedbackForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   user: User;
 
   constructor(

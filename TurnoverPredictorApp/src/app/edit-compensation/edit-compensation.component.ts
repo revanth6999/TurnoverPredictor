@@ -22,7 +22,7 @@ export class EditCompensationComponent implements OnInit {
 
   editCompForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   userId: number;
 
   constructor(

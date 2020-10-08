@@ -17,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  TurnoverPredictorAPIAuthUrl = environment.TurnoverPredictorAPIUrl + 'auth/';
+  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
@@ -26,7 +26,7 @@ export class AuthService {
   // tslint:disable-next-line: typedef
   login(model: any) {
     return this.http
-      .post(this.TurnoverPredictorAPIAuthUrl + 'login', model)
+      .post(this.WorkforceManagerAPIUrl + 'login', model)
       .pipe(
         map((response: any) => {
           const loginResponse = response;
@@ -41,11 +41,11 @@ export class AuthService {
   }
   // tslint:disable-next-line: typedef
   register(model: any) {
-    return this.http.post(this.TurnoverPredictorAPIAuthUrl + 'register', model);
+    return this.http.post(this.WorkforceManagerAPIUrl + 'register', model);
   }
 
   updateUser(): void {
-    this.http.get<User>(environment.TurnoverPredictorAPIUrl + 'users/' +
+    this.http.get<User>(environment.WorkforceManagerAPIUrl + 'users/' +
      this.currentUser.id, httpOptions).subscribe((user: User) => {
       localStorage.setItem('user', JSON.stringify(user));
       this.currentUser = user;

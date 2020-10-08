@@ -22,7 +22,7 @@ export class EditJobDescComponent implements OnInit {
 
   editJDForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   userId: number;
   managers: User[];
 

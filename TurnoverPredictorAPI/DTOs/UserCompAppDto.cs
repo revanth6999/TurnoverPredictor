@@ -25,5 +25,6 @@ namespace TurnoverPredictorAPI.DTOs
         public float AnnualIncome { get; set; }
         public float PercentSalaryHike { get; set; }
         public int StockOptionLevel { get; set; }
+        public string DisplayPictureUrl { get; set; }
     }
 }

@@ -19,6 +19,7 @@
                 <mat-form-field color="primary" hideRequiredMarker>
                     <mat-label>Annual Income</mat-label>
                     <input type="number" min="0" matInput formControlName="annualIncome" required> 
+                    <span matPrefix>&#x20B9;&nbsp;</span>
                     <mat-error *ngIf="editCompForm.controls.annualIncome.touched && editCompForm.controls.annualIncome.invalid">
                         <span *ngIf="editCompForm.controls.annualIncome.errors.required">Annual income is required</span>
                     </mat-error>

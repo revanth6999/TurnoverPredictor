@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  TurnoverPredictorAPIUrl: 'http://localhost:5000/'
+  WorkforceManagerAPIUrl: 'http://localhost:5000/',
+  TurnoverPredictorAPIUrl: 'http://127.0.0.1:8000/'
 };
 
 /*

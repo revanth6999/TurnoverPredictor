@@ -20,6 +20,7 @@ import { EditCompensationComponent } from './edit-compensation/edit-compensation
 
 import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
+import { PredictService } from './_services/predict.service';
 import { FeedbackService } from './_services/feedback.service';
 import { CompensationService } from './_services/compensation.service';
 import { PerformanceService } from './_services/performance.service';
@@ -27,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './route';
+import { CalculatorComponent } from './calculator/calculator.component';
 
 
 
@@ -43,7 +45,8 @@ import { appRoutes } from './route';
     PerformanceReviewComponent,
     FeedbackComponent,
     EditJobDescComponent,
-    EditCompensationComponent
+    EditCompensationComponent,
+    CalculatorComponent
   ],
   entryComponents: [PerformanceReviewComponent],
   imports: [
@@ -60,7 +63,8 @@ import { appRoutes } from './route';
     UserService,
     FeedbackService,
     CompensationService,
-    PerformanceService
+    PerformanceService,
+    PredictService
   ],
   bootstrap: [AppComponent]
 })

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   confirmPasswordCtrl = new FormControl('', [Validators.required]);
   managers: Manager[];
 

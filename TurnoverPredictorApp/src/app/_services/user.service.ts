@@ -17,35 +17,35 @@ const httpOptions = {
 
 export class UserService {
 
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl;
+  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl;
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.TurnoverPredictorAPIUrl + 'users', httpOptions);
+    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users', httpOptions);
   }
 
   getManagers(): Observable<User[]> {
-    return this.http.get<User[]>(this.TurnoverPredictorAPIUrl + 'users/managers', httpOptions);
+    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/managers', httpOptions);
   }
 
   getUsersWithCompensation(): Observable<UserHRModel[]> {
-    return this.http.get<UserHRModel[]>(this.TurnoverPredictorAPIUrl + 'users/compall', httpOptions);
+    return this.http.get<UserHRModel[]>(this.WorkforceManagerAPIUrl + 'users/compall', httpOptions);
   }
 
   getUser(id): Observable<User> {
-    return this.http.get<User>(this.TurnoverPredictorAPIUrl + 'users/' + id, httpOptions);
+    return this.http.get<User>(this.WorkforceManagerAPIUrl + 'users/' + id, httpOptions);
   }
 
   // tslint:disable-next-line: typedef
   updateUserProfile(model: any) {
     console.log('user service', model);
-    return this.http.put(this.TurnoverPredictorAPIUrl + 'users/updateProfile/' + model.id, model, httpOptions);
+    return this.http.put(this.WorkforceManagerAPIUrl + 'users/updateProfile/' + model.id, model, httpOptions);
   }
 
   // tslint:disable-next-line: typedef
   updateJobDesc(model: any) {
     console.log('user service jd', model);
-    return this.http.put(this.TurnoverPredictorAPIUrl + 'users/updateJob/' + model.id, model, httpOptions);
+    return this.http.put(this.WorkforceManagerAPIUrl + 'users/updateJob/' + model.id, model, httpOptions);
   }
 }

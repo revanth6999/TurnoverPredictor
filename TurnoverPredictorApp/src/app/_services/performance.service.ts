@@ -15,13 +15,13 @@ const httpOptions = {
 
 export class PerformanceService {
 
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl;
+  WorkforceManagerAPIUrl = environment.WorkforceManagerAPIUrl;
 
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
   submitPerformance(model: any) {
     console.log('performance service', model);
-    return this.http.post(this.TurnoverPredictorAPIUrl + 'performances/submit', model, httpOptions);
+    return this.http.post(this.WorkforceManagerAPIUrl + 'performances/submit', model, httpOptions);
   }
 }

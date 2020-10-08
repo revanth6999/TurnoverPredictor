@@ -21,5 +21,7 @@ namespace TurnoverPredictorAPI.DTOs
         public DateTime DateOfJoining { get; set; }
         public int NumCompaniesWorked { get; set; }
         public int TotalWorkingYears { get; set; }
+        public string DisplayPictureUrl { get; set; }
+
     }
 }

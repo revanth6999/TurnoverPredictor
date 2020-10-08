@@ -20,4 +20,5 @@ export interface UserHRModel {
     annualIncome: number;
     percentSalaryHike: number;
     stockOptionLevel: number;
+    displayPictureUrl: string;
 }
