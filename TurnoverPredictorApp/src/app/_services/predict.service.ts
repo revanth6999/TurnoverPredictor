@@ -24,7 +24,11 @@ export class PredictService {
 
   // tslint:disable-next-line: typedef
   predictEmployeeTurnover() {
-    return this.http.get(this.TurnoverPredictorAPIUrl);
+    return this.http.get(this.TurnoverPredictorAPIUrl + 'predict');
+  }
+
+  trainEmployeeTurnover() {
+    return this.http.get(this.TurnoverPredictorAPIUrl + 'train');
   }
 
 }

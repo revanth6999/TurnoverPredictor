@@ -10,6 +10,10 @@ mat-divider{
     margin-bottom: 1.5rem;
 }
 
+#canvasContainer {
+    margin-bottom: 5rem;
+}
+
 a, button {
     margin-top: 1rem;
     margin-bottom: 1rem;

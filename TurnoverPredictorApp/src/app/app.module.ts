@@ -17,6 +17,7 @@ import { PerformanceReviewComponent } from './performance-review/performance-rev
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EditJobDescComponent } from './edit-job-desc/edit-job-desc.component';
 import { EditCompensationComponent } from './edit-compensation/edit-compensation.component';
+import { ChartsModule } from 'ng2-charts';
 
 import { AuthService } from './_services/auth.service';
 import { UserService } from './_services/user.service';
@@ -55,7 +56,7 @@ import { RemoveEmployeeComponent } from './remove-employee/remove-employee.compo
     DashboardComponent,
     RemoveEmployeeComponent
   ],
-  entryComponents: [PerformanceReviewComponent],
+  entryComponents: [HomeComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -64,7 +65,8 @@ import { RemoveEmployeeComponent } from './remove-employee/remove-employee.compo
     FormsModule,
     FileUploadModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ChartsModule
   ],
   providers: [
     AuthService,

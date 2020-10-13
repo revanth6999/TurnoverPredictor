@@ -60,6 +60,8 @@ namespace TurnoverPredictorAPI.Data
         {
             var avgPerRat = await Context.UserPerformances.AverageAsync(u => u.PerformanceRating);
             var avgJobInvol = await Context.UserPerformances.AverageAsync(u => u.JobInvolvement);
+            avgPerRat = (avgPerRat / 4) * 100;
+            avgJobInvol = (avgJobInvol / 4) * 100;
             double Overtime = 0;
             int count = 0;
             foreach ( var performance in Context.UserPerformances)
@@ -71,6 +73,7 @@ namespace TurnoverPredictorAPI.Data
                 }
             }
             var avgOverTime = Overtime/count;
+            avgOverTime = avgOverTime * 100;
             return new AveragePerformanceDto {
                 AvgPerformanceRating = avgPerRat,
                 AvgOverTime = avgOverTime,

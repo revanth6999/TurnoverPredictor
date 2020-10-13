@@ -4,7 +4,7 @@
     <mat-divider></mat-divider>
     <mat-list>
 
-      <a mat-list-item [routerLink]="['/dashboard']" disableRipple>
+      <a *ngIf="this.authService.currentUser.jobRole === 'Human Resources'" mat-list-item [routerLink]="['/dashboard']" disableRipple>
         <mat-icon color="primary">dashboard
         </mat-icon> Dashboard
       </a>

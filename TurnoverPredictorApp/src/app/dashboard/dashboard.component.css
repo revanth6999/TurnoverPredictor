@@ -1,9 +1,15 @@
 .dashboard-card {
-    max-width: 500px;
+    /* max-width: 500px; */
+    min-width: 300px;
     min-height: 250px;
     padding: 2rem;
     margin: 0;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.small-canvas{
+    width: 30%;
+    display: inline-block;
 }
 
 .mat-title {
@@ -17,18 +23,24 @@
     text-decoration: bold;
 }
 
+canvas {
+    width: 30%;
+}
+
 .mat-display-1 {
     display: inline;
     margin-left: 3rem;
 }
 
 mat-grid-list{
-    margin-left: 6rem;
-    margin-right: 15%;
+    margin-left: 3rem;
     margin-top: 2rem;
-    margin-bottom: 8rem;
+    margin-bottom: 3rem;
 }
 
-mat-grid-tile{
-    /* background-color: purple; */
+button {
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 1px;
+    opacity: 0.85;
 }

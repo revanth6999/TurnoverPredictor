@@ -5,6 +5,7 @@ import { Manager } from '../_models/Manager';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { PredictService } from '../_services/predict.service';
+import * as Chart from 'chart.js';
 
 @Component({
   selector: 'app-calculator',
@@ -32,6 +33,8 @@ export class CalculatorComponent implements OnInit {
   showCalculator: boolean;
   showPrediction: boolean;
   employeeTurnover: any;
+  predictChart: Chart;
+  turnover: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -56,6 +59,8 @@ export class CalculatorComponent implements OnInit {
       indOther: [0],
       indAcc: [0]
     });
+    this.turnover = 6;
+    this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.turnover);
   }
 
   calculate(): void {
@@ -78,7 +83,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   predictET(): void {
-    this.predictService.predictEmployeeTurnover().subscribe(next=> {
+    this.predictService.predictEmployeeTurnover().subscribe(next => {
       this.employeeTurnover = next;
       this.showPrediction = true;
       this.snackBar.open('Employee turnover prediction success', '',
@@ -99,5 +104,52 @@ export class CalculatorComponent implements OnInit {
         return;
       }
     );
+  }
+
+  trainET(): void {
+    this.predictService.trainEmployeeTurnover().subscribe(next => {
+      // add code here
+      this.snackBar.open('Model training success', '',
+        {
+          duration: 2000,
+          panelClass: ['my-snackbar'],
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+      }, error => {
+        this.snackBar.open('Model training failed', '',
+        {
+          duration: 2000,
+          panelClass: ['my-snackbar'],
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
+        return;
+      }
+    );
+  }
+
+  createChart(id: string, chartLabels: [string, string], num: number): Chart {
+    const newChart = new Chart(id, {
+      type: 'doughnut',
+      data: {
+        labels: chartLabels,
+        datasets: [
+          {
+            data: [num, 100 - num],
+            backgroundColor: [
+                  'rgba(0, 129, 138, 1)',
+                  'rgba(40, 49, 73, 1)',
+                ],
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+      }
+    });
+    return newChart;
   }
 }

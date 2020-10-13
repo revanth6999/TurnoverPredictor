@@ -47,6 +47,9 @@ namespace TurnoverPredictorAPI.Data
             var avgjob = await Context.UserFeedbacks.AverageAsync(u => u.JobSatisfaction);
             var avgenv = await Context.UserFeedbacks.AverageAsync(u => u.EnvironmentSatisfaction);
             var avgwrk = await Context.UserFeedbacks.AverageAsync(u => u.WorkLifeBalance);
+            avgjob = (avgjob / 4) * 100;
+            avgenv = (avgenv / 4) * 100;
+            avgwrk = (avgwrk / 4) * 100;
             return new AverageFeedbackDto{
                 AvgJobSatis = avgjob,
                 AvgEnvSatis = avgenv,
@@ -57,7 +60,7 @@ namespace TurnoverPredictorAPI.Data
         public async Task<UserFeedback> GetFeedback(int id)
         {
             var feedback = await Context.UserFeedbacks.FirstOrDefaultAsync(f => f.Id == id);
-            return feedback;
+            return feedback;            
         }
         
         public async Task<bool> SaveAll()

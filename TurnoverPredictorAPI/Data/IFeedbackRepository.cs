@@ -9,6 +9,6 @@ namespace TurnoverPredictorAPI.Data
     {
         Task<UserFeedback> SubmitFeedback(UserFeedback userFeedback);
         Task<AverageFeedbackDto> GetAverageValues();
-        Task<User> GetFeedback(int id);
+        Task<UserFeedback> GetFeedback(int id);
     }
 }

@@ -2,14 +2,19 @@
     <div class="welcome mat-display-2"><p style="text-align: center;">'Machine learning - The next step in Workforce Management'</p></div><br>
     <div class="welcome mat-display-1"><p style="text-align: center;">Estimate the annual employee turnover for the next fiscal year!</p></div><br>
     <!-- <div class="welcome mat-headline">Check out the recruitment budget calculator</div><br> -->
+    <div id="canvasContainer" [hidden]="!predictChart">
+        <canvas id="predictCanvas">{{ predictChart }}</canvas>
+    </div>
     <div class="welcome">
-        <button color="accent" (click)="predictET()" mat-flat-button>Predict employee turnover</button><br>
+        <button color="accent" (click)="trainET()" mat-stroked-button>Train your predictor</button><br>
+        <button color="accent" (click)="predictET()" mat-raised-button>Predict employee turnover</button><br>
         <button color="accent" *ngIf="!this.showCalculator" (click)="this.showCalculator = true" mat-stroked-button>Show Calculator</button>
         <button color="accent" *ngIf="this.showCalculator" (click)="this.showCalculator = false" mat-stroked-button>Hide Calculator</button>
     </div><br>
     <div *ngIf="this.showPrediction" class="welcome">
         <div class="mat-title">Employee turnover is {{this.employeeTurnover}} %</div>
     </div>
+    
     <!-- <div class="welcome">
         <button color="primary" [routerLink]="['/dashboard']" mat-flat-button>Go to dashboard</button>
     </div> -->
