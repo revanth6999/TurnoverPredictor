@@ -9,5 +9,6 @@ namespace TurnoverPredictorAPI.Data
     {
         Task<UserPerformance> GetPerformance(int userId);
         Task<UserPerformance> SubmitUserPerformance(UserPerformance userPerformance);
+        Task<AveragePerformanceDto> GetAverageValues();
     }
 }

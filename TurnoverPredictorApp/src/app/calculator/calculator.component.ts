@@ -31,7 +31,7 @@ export class CalculatorComponent implements OnInit {
   result: number;
   showCalculator: boolean;
   showPrediction: boolean;
-  employeeTurnover: string;
+  employeeTurnover: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -78,8 +78,8 @@ export class CalculatorComponent implements OnInit {
   }
 
   predictET(): void {
-    this.predictService.predictEmployeeTurnover().subscribe((result: number) => {
-      this.employeeTurnover = (100 - result).toFixed(2);
+    this.predictService.predictEmployeeTurnover().subscribe(next=> {
+      this.employeeTurnover = next;
       this.showPrediction = true;
       this.snackBar.open('Employee turnover prediction success', '',
         {

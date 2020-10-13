@@ -1,0 +1,36 @@
+<div class="mat-title">Dashboard</div>
+<mat-grid-list cols="3">
+    <mat-grid-tile>
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+                <mat-card-title>Average Feedback</mat-card-title>
+                <mat-card-subtitle>(in %)</mat-card-subtitle>
+            </mat-card-header>
+    
+            <mat-card-content>
+                <div class="mat-subheading-2">Job Satisfaction &nbsp;</div><div class="mat-display-1"><strong>{{feedbackAvg.avgJobSatis}}</strong></div><br><br>
+                <div class="mat-subheading-2">Enivronment Satisfaction </div><div class="mat-display-1"><strong>{{feedbackAvg.avgEnvSatis}}</strong></div><br><br>
+                <div class="mat-subheading-2">Work Life Balance &nbsp;</div><div class="mat-display-1"><strong>{{feedbackAvg.avgWorkLife}}</strong></div>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+            </mat-card-actions> -->
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="dashboard-card">
+            <mat-card-header>
+                <mat-card-title>Average Performance</mat-card-title>
+                <mat-card-subtitle>(in %)</mat-card-subtitle>
+            </mat-card-header>
+    
+            <mat-card-content>
+                <div class="mat-subheading-2">Performance Rating &nbsp;</div><div class="mat-display-1"><strong>{{performanceAvg.avgPerformanceRating}}</strong></div><br><br>
+                <div class="mat-subheading-2">Job Involvement </div><div class="mat-display-1"><strong>{{performanceAvg.avgJobInvolvement}}</strong></div><br><br>
+                <div class="mat-subheading-2">Over Time &nbsp;</div><div class="mat-display-1"><strong>{{performanceAvg.avgOverTime}}</strong></div>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+            </mat-card-actions> -->
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<br>

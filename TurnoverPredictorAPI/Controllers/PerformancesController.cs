@@ -40,5 +40,13 @@ namespace TurnoverPredictorAPI.Controllers
                 return StatusCode(500, "Could not submit performance info. Please try again later!");
             }            
         }
+
+        [HttpGet]
+        [Route("average")]
+        public async Task<IActionResult> GetAverageValue()
+        {
+            var average = await PerformanceRepo.GetAverageValues();
+            return Ok(average);
+        }
     }
 }

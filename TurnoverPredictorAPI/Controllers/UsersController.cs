@@ -154,6 +154,38 @@ namespace TurnoverPredictorAPI.Controllers
                 return StatusCode(500, "Could not submit compensation info. Please try again later!");
             }            
         }
+
+        [HttpGet]
+        [Route("jobdes")]
+        public async Task<IActionResult> GetUsersWithoutJD()
+        {
+            var users = await UserRepo.GetUsersJD();        
+            return Ok(Mapper.Map<IEnumerable<UserCompAppDto>>(users));
+        }
+
+        [HttpGet]
+        [Route("compen")]
+        public async Task<IActionResult> GetUsersWithoutCompensation()
+        {
+            var users = await UserRepo.GetUsersWithoutComp();        
+            return Ok(Mapper.Map<IEnumerable<UserCompAppDto>>(users));
+        }
+        
+        [HttpGet]
+        [Route("manager/{id}/notrated")]
+        public async Task<IActionResult> GetUsersUnderManagerNotRated(int id)
+        {
+            var users = await UserRepo.GetUsersUnderManagerNotRated(id);          
+            return Ok(Mapper.Map<IEnumerable<UserAppDto>>(users));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            var user = await UserRepo.DeleteUser(id);        
+            return Ok(Mapper.Map<UserCompAppDto>(user));
+                       
+        }
     }
     
 }

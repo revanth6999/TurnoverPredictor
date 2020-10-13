@@ -26,7 +26,7 @@ export class UserService {
   }
 
   getUsersUnderManager(id): Observable<User[]> {
-    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/manager' + id, httpOptions);
+    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/manager/' + id, httpOptions);
   }
 
   getManagers(): Observable<User[]> {
@@ -51,5 +51,22 @@ export class UserService {
   updateJobDesc(model: any) {
     console.log('user service jd', model);
     return this.http.put(this.WorkforceManagerAPIUrl + 'users/updateJob/' + model.id, model, httpOptions);
+  }
+
+  getUsersWithoutJD(): Observable<UserHRModel[]> {
+    return this.http.get<UserHRModel[]>(this.WorkforceManagerAPIUrl + 'users/jobdes', httpOptions);
+  }
+
+  getUsersWithoutCompensation(): Observable<UserHRModel[]> {
+    return this.http.get<UserHRModel[]>(this.WorkforceManagerAPIUrl + 'users/compen', httpOptions);
+  }
+
+  getUsersUnderManagerNotRated(id): Observable<User[]> {
+    return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users/manager/' + id + '/notrated', httpOptions);
+  }
+
+  // tslint:disable-next-line: typedef
+  removeEmployee(id) {
+    return this.http.delete(this.WorkforceManagerAPIUrl + 'users/' + id, httpOptions);
   }
 }

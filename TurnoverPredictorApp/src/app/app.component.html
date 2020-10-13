@@ -4,7 +4,10 @@
     <mat-divider></mat-divider>
     <mat-list>
 
-      
+      <a mat-list-item [routerLink]="['/dashboard']" disableRipple>
+        <mat-icon color="primary">dashboard
+        </mat-icon> Dashboard
+      </a>
 
       <a mat-list-item [routerLink]="['/profile']" disableRipple>
         <mat-icon color="primary">contact_page
@@ -25,7 +28,12 @@
 
       <!-- TEST CODE - ABOVE CODE FOR PRODUCTION -->
 
-      <!-- <a mat-list-item [routerLink]="['/team']" disableRipple>
+      <!--
+      <a mat-list-item [routerLink]="['/dashboard']" disableRipple>
+        <mat-icon color="primary">dashboard
+        </mat-icon> Dashboard
+      </a>
+      <a mat-list-item [routerLink]="['/team']" disableRipple>
         <mat-icon color="primary">group</mat-icon> Your team
       </a>
       <a mat-list-item [routerLink]="['/employees']" disableRipple>

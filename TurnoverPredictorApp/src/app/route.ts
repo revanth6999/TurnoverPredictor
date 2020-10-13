@@ -7,10 +7,12 @@ import { ManageEmployeesComponent } from './manage-employees/manage-employees.co
 import { ProfileComponent } from './profile/profile.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { AuthGuard } from './_guards/AuthGuard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
 
     { path: '', component: HomeComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'team', component: ManageTeamComponent, canActivate: [AuthGuard] },

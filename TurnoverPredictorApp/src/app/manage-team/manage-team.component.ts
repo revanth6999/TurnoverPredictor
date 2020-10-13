@@ -5,6 +5,7 @@ import { PerformanceReviewComponent } from '../performance-review/performance-re
 import { User } from '../_models/User';
 import { UserService } from '../_services/user.service';
 import { AuthService } from '../_services/auth.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-manage-team',
@@ -27,8 +28,12 @@ export class ManageTeamComponent implements OnInit {
   constructor(private dialog: MatDialog, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh(): void {
     this.userService.getUsersUnderManager(this.authService.currentUser.id).subscribe((users: User[]) => {
-      this.dataSource = users;
+      this.dataSource = new MatTableDataSource(users);
     }, error => {
       console.log('get users error');
     });
@@ -40,9 +45,37 @@ export class ManageTeamComponent implements OnInit {
       data: {
         userId: element.id,
       }
-    });
+    }).afterClosed()
+    .subscribe(response => {
+      this.refresh();
+    });;
   }
 
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onChange(event): void {
+    console.log(event.value);
+    if (event.value === 'all')
+    {
+      this.userService.getUsersUnderManager(this.authService.currentUser.id).subscribe((users: User[]) => {
+        this.dataSource = new MatTableDataSource(users);
+      }, error => {
+        console.log('get users error');
+      });
+    }
+    else if (event.value === 'pending')
+    {
+      this.userService.getUsersUnderManagerNotRated(this.authService.currentUser.id).subscribe((users: User[]) => {
+        this.dataSource = new MatTableDataSource(users);
+      }, error => {
+        console.log('get users error');
+      });
+    }
+  }
 }
 
 

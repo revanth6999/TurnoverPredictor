@@ -55,5 +55,27 @@ namespace TurnoverPredictorAPI.Data
         {
             return await Context.SaveChangesAsync() > 0;
         }
+
+        public async Task<AveragePerformanceDto> GetAverageValues()
+        {
+            var avgPerRat = await Context.UserPerformances.AverageAsync(u => u.PerformanceRating);
+            var avgJobInvol = await Context.UserPerformances.AverageAsync(u => u.JobInvolvement);
+            double Overtime = 0;
+            int count = 0;
+            foreach ( var performance in Context.UserPerformances)
+            {
+                if(performance.OverTime!=null)
+                {
+                    Overtime += performance.OverTime == "Yes" ? 1 : 0;
+                    count++;
+                }
+            }
+            var avgOverTime = Overtime/count;
+            return new AveragePerformanceDto {
+                AvgPerformanceRating = avgPerRat,
+                AvgOverTime = avgOverTime,
+                AvgJobInvolvement = avgJobInvol
+            };
+        }
     }
 }

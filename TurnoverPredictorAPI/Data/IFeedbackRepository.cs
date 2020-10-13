@@ -8,5 +8,7 @@ namespace TurnoverPredictorAPI.Data
     public interface IFeedbackRepository
     {
         Task<UserFeedback> SubmitFeedback(UserFeedback userFeedback);
+        Task<AverageFeedbackDto> GetAverageValues();
+        Task<User> GetFeedback(int id);
     }
 }

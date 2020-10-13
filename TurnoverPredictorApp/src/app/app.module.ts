@@ -31,6 +31,8 @@ import { appRoutes } from './route';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { PhotoComponent } from './photo/photo.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
 
 
 
@@ -49,7 +51,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     EditJobDescComponent,
     EditCompensationComponent,
     CalculatorComponent,
-    PhotoComponent
+    PhotoComponent,
+    DashboardComponent,
+    RemoveEmployeeComponent
   ],
   entryComponents: [PerformanceReviewComponent],
   imports: [

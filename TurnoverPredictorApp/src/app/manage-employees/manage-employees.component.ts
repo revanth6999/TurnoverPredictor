@@ -6,8 +6,8 @@ import { EditJobDescComponent } from '../edit-job-desc/edit-job-desc.component';
 import { UserService } from '../_services/user.service';
 import { User } from '../_models/User';
 import { UserHRModel } from '../_models/UserHRModel';
-
-
+import { MatTableDataSource } from '@angular/material/table';
+import { RemoveEmployeeComponent } from '../remove-employee/remove-employee.component';
 
 @Component({
   selector: 'app-manage-employees',
@@ -37,7 +37,8 @@ export class ManageEmployeesComponent implements OnInit  {
 
   refresh(): void {
     this.userService.getUsersWithCompensation().subscribe((users: UserHRModel[]) => {
-      this.dataSource = users;
+      this.dataSource = new MatTableDataSource(users);
+      console.log(users);
     }, error => {
       console.log('get users error');
     });
@@ -49,6 +50,9 @@ export class ManageEmployeesComponent implements OnInit  {
       data: {
         userId: element.id,
       }
+    }).afterClosed()
+    .subscribe(response => {
+      this.refresh();
     });
   }
 
@@ -58,38 +62,54 @@ export class ManageEmployeesComponent implements OnInit  {
       data: {
         userId: element.id,
       }
+    }).afterClosed()
+    .subscribe(response => {
+      this.refresh();
+    });
+  }
+
+  onChange(event): void {
+    // alert(event.value);
+    console.log(event.value);
+    if (event.value === 'all')
+    {
+      this.userService.getUsersWithCompensation().subscribe((users: UserHRModel[]) => {
+        this.dataSource = new MatTableDataSource(users);
+      }, error => {
+        console.log('get users error');
+      });
+    }
+    else if (event.value === 'pendingJd')
+    {
+      this.userService.getUsersWithoutJD().subscribe((users: UserHRModel[]) => {
+        this.dataSource = new MatTableDataSource(users);
+      }, error => {
+        console.log('get users error');
+      });
+    }
+    else if (event.value === 'pendingComp')
+    {
+      this.userService.getUsersWithoutCompensation().subscribe((users: UserHRModel[]) => {
+        this.dataSource = new MatTableDataSource(users);
+      }, error => {
+        console.log('get users error');
+      });
+    }
+  }
+
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  removeEmployee(element): void {
+    console.log(element);
+    this.dialog.open(RemoveEmployeeComponent, {
+      data: {
+        userId: element.id,
+        email: element.email
+      }
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-// const users: User[] = [
-//   {ID: 1, FirstName: 'Hydrogn', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 2, FirstName: 'Helium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 3, FirstName: 'Lithium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 4, FirstName: 'Beryllium', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 5, FirstName: 'Boron', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 6, FirstName: 'Carbon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//    Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 7, FirstName: 'Nitrogen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 8, FirstName: 'Oxygen', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 9, FirstName: 'Fluorine', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-//   {ID: 10, FirstName: 'Neon', LastName: 'Nallam', Email: 'revanth@adp.com', JobRole: 'developer', JobLevel: 1,
-//   Department: 'iHCM', ManagerId: 1, AnnualIncome: 8800000, StockOptionLevel: 1, DailyRate: 123, PercentSalaryHike: 10},
-// ];

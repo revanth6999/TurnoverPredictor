@@ -41,6 +41,25 @@ namespace TurnoverPredictorAPI.Data
                 return null;
             }
         }
+
+        public async Task<AverageFeedbackDto> GetAverageValues()
+        {
+            var avgjob = await Context.UserFeedbacks.AverageAsync(u => u.JobSatisfaction);
+            var avgenv = await Context.UserFeedbacks.AverageAsync(u => u.EnvironmentSatisfaction);
+            var avgwrk = await Context.UserFeedbacks.AverageAsync(u => u.WorkLifeBalance);
+            return new AverageFeedbackDto{
+                AvgJobSatis = avgjob,
+                AvgEnvSatis = avgenv,
+                AvgWorkLife = avgwrk
+            };
+        }
+
+        public async Task<UserFeedback> GetFeedback(int id)
+        {
+            var feedback = await Context.UserFeedbacks.FirstOrDefaultAsync(f => f.Id == id);
+            return feedback;
+        }
+        
         public async Task<bool> SaveAll()
         {
             return await Context.SaveChangesAsync() > 0;

@@ -155,5 +155,46 @@ namespace TurnoverPredictorAPI.Data
             var users = await Context.Users.Where(u => u.JobRole.Equals("Manager")).ToListAsync();
             return users;
         }
+
+        public async Task<IEnumerable<User>> GetUsersJD()
+        {
+            var users = await Context.Users.Where(p => p.JobRole == null).ToListAsync();
+            return users;
+        }
+        public async Task<IEnumerable<User>> GetUsersWithoutComp()
+        {
+            var users = await Context.Users.Where(p => p.AnnualIncome == 0).ToListAsync();
+            return users;
+        }
+        public async Task<IEnumerable<User>> GetUsersUnderManagerNotRated(int managerId)
+        {
+            var users = await (from u in Context.Users join p in Context.UserPerformances on u.Id equals p.UserId
+                         where u.ManagerId == managerId && p.PerformanceRating == 0
+                         select u).ToListAsync();
+            
+            return users;
+        }
+
+        public async Task<User> DeleteUser(int id)
+        {
+            var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            Context.Users.Remove(user);
+
+            var userPerformance = await Context.UserPerformances.FirstOrDefaultAsync(u => u.UserId == id);
+            if(userPerformance != null)
+            {
+                Context.UserPerformances.Remove(userPerformance);
+            }
+
+            var userFeedback = await Context.UserFeedbacks.FirstOrDefaultAsync(u => u.UserId == id);
+            if(userFeedback != null)
+            {
+                Context.UserFeedbacks.Remove(userFeedback);
+            }
+
+            await Context.SaveChangesAsync();
+
+            return user;
+        }
     }
 }

@@ -10,6 +10,16 @@ table{
     margin-top: 5%;
 }
 
+.mat-form-field {
+    font-size: 14px;
+    width: 15%;
+    margin-left: 12.5%;
+ }
+
+ #filterSelect2{
+    width: 15%;
+ }
+
 tr.example-detail-row {
 height: 0;
 }

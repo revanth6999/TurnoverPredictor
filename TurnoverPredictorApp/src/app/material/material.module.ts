@@ -21,8 +21,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
-
 const MaterialComponents = [
   MatButtonModule,
   MatSidenavModule,
@@ -44,7 +42,7 @@ const MaterialComponents = [
   MatGridListModule,
   MatSnackBarModule,
   MatTableModule,
-  MatDialogModule
+  MatDialogModule,
 ];
 
 @NgModule({

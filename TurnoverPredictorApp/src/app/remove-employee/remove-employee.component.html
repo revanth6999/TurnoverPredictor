@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Remove employee</h2>
+<mat-dialog-content>
+    <form [formGroup]="removeEmployeeForm" class="remove-employee-form">
+        <div>
+            <mat-form-field color="primary" hideRequiredMarker>
+                <mat-label>Confirm Employee Email</mat-label>
+                <input matInput formControlName="email" required>
+                <mat-error *ngIf="removeEmployeeForm.controls.email.touched && removeEmployeeForm.controls.email.invalid">
+                    <span *ngIf="removeEmployeeForm.controls.email.errors.required">This is required</span>
+                    <span *ngIf="removeEmployeeForm.controls.email.errors.mustMatch">Email does not match</span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button type="submit" (click)="removeEmployee()" color="warn">Confirm</button>
+    <button mat-stroked-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

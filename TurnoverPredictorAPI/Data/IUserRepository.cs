@@ -16,5 +16,9 @@ namespace TurnoverPredictorAPI.Data
         Task<bool> UpdateUserJob(int userId, UserJobUpdateDto userProfileUpdateDto);
         Task<IEnumerable<User>> GetUsersUnderManager(int managerId);
         Task<UserCompUpdateDto> SubmitUserCompensation(UserCompUpdateDto userCompDto);
+        Task<IEnumerable<User>> GetUsersJD();
+        Task<IEnumerable<User>> GetUsersWithoutComp();
+        Task<IEnumerable<User>> GetUsersUnderManagerNotRated(int managerId);
+        Task<User> DeleteUser(int id);
     }
 }

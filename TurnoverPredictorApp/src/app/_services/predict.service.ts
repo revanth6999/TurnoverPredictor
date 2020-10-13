@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class PredictService {
 
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl + 'predict/';
+  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl + 'predict';
 
   constructor(private http: HttpClient) { }
 

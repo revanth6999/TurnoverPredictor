@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { AvgPerformance } from '../_models/AvgPerformance';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,5 +24,9 @@ export class PerformanceService {
   submitPerformance(model: any) {
     console.log('performance service', model);
     return this.http.post(this.WorkforceManagerAPIUrl + 'performances/submit', model, httpOptions);
+  }
+
+  getAverage(): Observable<AvgPerformance> {
+    return this.http.get<AvgPerformance>(this.WorkforceManagerAPIUrl + 'performances/average', httpOptions);
   }
 }

@@ -41,5 +41,13 @@ namespace TurnoverPredictorAPI.Controllers
                 return StatusCode(500, "Could not send feedback. Please try again later!");
             }            
         }
+        
+        [HttpGet]
+        [Route("average")]
+        public async Task<IActionResult> GetAverageValue()
+        {
+            var average = await FeedbackRepo.GetAverageValues();
+            return Ok(average);
+        }
     }
 }
