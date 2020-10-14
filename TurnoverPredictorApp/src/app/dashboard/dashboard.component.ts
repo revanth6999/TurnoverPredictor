@@ -73,9 +73,9 @@ export class DashboardComponent implements OnInit {
     this.predictService.predictEmployeeTurnover().subscribe(next => {
       this.employeeTurnover = parseInt(next.toString(), 10);
       console.log('et', this.employeeTurnover);
-      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
+      this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
       }, error => {
-        this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], 21.5);
+        this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], 21.5);
         return;
       }
     );
@@ -99,6 +99,31 @@ export class DashboardComponent implements OnInit {
       options: {
         legend: {
           display: false
+        },
+      }
+    });
+    return newChart;
+  }
+
+
+  createChartWithLegend(id: string, chartLabels: [string, string], num: number): Chart {
+    const newChart = new Chart(id, {
+      type: 'doughnut',
+      data: {
+        labels: chartLabels,
+        datasets: [
+          {
+            data: [num, 100 - num],
+            backgroundColor: [
+                  'rgba(0, 129, 138, 1)',
+                  'rgba(40, 49, 73, 1)',
+                ],
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: true
         },
       }
     });
