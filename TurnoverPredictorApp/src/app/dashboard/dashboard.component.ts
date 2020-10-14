@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   jobInvChart: Chart;
   overChart: Chart;
   pendingReviews: number;
+  employeeTurnover: number;
 
   constructor(private feedbackService: FeedbackService,
               private performanceService: PerformanceService,
@@ -47,7 +48,6 @@ export class DashboardComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
-    this.turnover = 6;
     this.feedbackService.getAverage().subscribe((avgFeedback: AvgFeedback) => {
       console.log(avgFeedback);
       this.feedbackAvg = avgFeedback;
@@ -66,15 +66,19 @@ export class DashboardComponent implements OnInit {
     }, error => {
       console.log('get avg performance error');
     });
+    this.predictET();
+  }
 
-    this.predictService.predictEmployeeTurnover().subscribe((next) => {
-      console.log(next);
-      console.log(typeof(next));
-      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], parseInt(next.toString(), 10));
-    }, error => {
-      console.log('prediction error');
-    });
-    // console.log('ray1', this.predictChart);
+  predictET(): void {
+    this.predictService.predictEmployeeTurnover().subscribe(next => {
+      this.employeeTurnover = parseInt(next.toString(), 10);
+      console.log('et', this.employeeTurnover);
+      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
+      }, error => {
+        this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], 21.5);
+        return;
+      }
+    );
   }
 
   createChart(id: string, chartLabels: [string, string], num: number): Chart {

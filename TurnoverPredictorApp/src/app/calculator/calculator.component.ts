@@ -20,6 +20,7 @@ export class CalculatorComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   confirmPasswordCtrl = new FormControl('', [Validators.required]);
 
+  predictChart2: Chart;
   grpTravel: number;
   grpFood: number;
   grpAcc: number;
@@ -36,7 +37,6 @@ export class CalculatorComponent implements OnInit {
   // showCalculator: boolean;
   showPrediction: boolean;
   employeeTurnover: number;
-  predictChart: Chart;
   turnover: number;
 
   constructor(
@@ -64,15 +64,7 @@ export class CalculatorComponent implements OnInit {
       indAcc: [0]
     });
 
-    this.predictService.predictEmployeeTurnover().subscribe((next) => {
-      console.log(next);
-      console.log(typeof(next));
-      this.employeeTurnover = parseInt(next.toString(), 10);
-      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
-    }, error => {
-      this.employeeTurnover = 0.205;
-      console.log('prediction error');
-    });
+    this.predictET();
 
     this.userService.getUsers().subscribe((users) => {
       this.strength = users.length;
@@ -108,7 +100,9 @@ export class CalculatorComponent implements OnInit {
   predictET(): void {
     this.predictService.predictEmployeeTurnover().subscribe(next => {
       this.employeeTurnover = parseInt(next.toString(), 10);
+      console.log('et', this.employeeTurnover);
       this.showPrediction = true;
+      this.predictChart2 = this.createChart('predictCanvas2', ['Turnover %', 'Retention %'], this.employeeTurnover);
       this.snackBar.open('Employee turnover prediction success', '',
         {
           duration: 2000,
@@ -117,6 +111,7 @@ export class CalculatorComponent implements OnInit {
           verticalPosition: this.verticalPosition,
         });
       }, error => {
+        this.predictChart2 = this.createChart('predictCanvas2', ['Turnover %', 'Retention %'], 21.5);
         this.snackBar.open('Employee turnover prediction failed', '',
         {
           duration: 2000,
@@ -131,7 +126,6 @@ export class CalculatorComponent implements OnInit {
 
   trainET(): void {
     this.predictService.trainEmployeeTurnover().subscribe(next => {
-      // add code here
       this.snackBar.open('Model training success', '',
         {
           duration: 2000,
@@ -169,8 +163,12 @@ export class CalculatorComponent implements OnInit {
       },
       options: {
         legend: {
-          display: false
+          display: true
         },
+        // title: {
+        //   display: true,
+        //   text: 'Revanth Nallam',
+        // }
       }
     });
     return newChart;

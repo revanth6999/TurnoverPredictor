@@ -12,7 +12,12 @@ mat-divider{
 
 #canvasContainer {
     margin-bottom: 5rem;
-    width: 50%;
+    position: relative;   
+    align-items: center;       
+    width: 50%;    
+    left: 50%;                 
+    transform: translate(-50%);
+    /* width: 50%; */
 }
 
 a, button {
