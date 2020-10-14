@@ -12,20 +12,19 @@ mat-divider{
 
 #canvasContainer {
     margin-bottom: 5rem;
+    width: 50%;
 }
 
 a, button {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    position: relative;          
+    /* position: relative;           */
     display: inline-block;       
-    left: 50%;                 
-    transform: translate(-50%);
+    margin: 2rem;
 }
 
 
 .welcome {
-    position: relative;          
+    position: relative;   
+    align-items: center;       
     display: inline-block;       
     left: 50%;                 
     transform: translate(-50%);
@@ -37,10 +36,6 @@ a, button {
     margin-left: 10rem;
     margin-right: 10rem;
     margin-bottom: 3rem;
-}
-
-button {
-    margin: 0.5rem;
 }
 
 

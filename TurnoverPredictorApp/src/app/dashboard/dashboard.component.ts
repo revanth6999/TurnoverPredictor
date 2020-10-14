@@ -15,6 +15,7 @@ import { AvgFeedback } from '../_models/AvgFeedback';
 import { AvgPerformance } from '../_models/AvgPerformance';
 import { FeedbackService } from '../_services/feedback.service';
 import * as Chart from 'chart.js';
+import { PredictService } from '../_services/predict.service';
 
 
 @Component({
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit {
               private router: Router,
               public authService: AuthService,
               public userService: UserService,
+              private predictService: PredictService,
               ) { }
 
   ngOnInit(): void {
@@ -64,7 +66,14 @@ export class DashboardComponent implements OnInit {
     }, error => {
       console.log('get avg performance error');
     });
-    this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], 6);
+
+    this.predictService.predictEmployeeTurnover().subscribe((next) => {
+      console.log(next);
+      console.log(typeof(next));
+      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], parseInt(next.toString(), 10));
+    }, error => {
+      console.log('prediction error');
+    });
     // console.log('ray1', this.predictChart);
   }
 

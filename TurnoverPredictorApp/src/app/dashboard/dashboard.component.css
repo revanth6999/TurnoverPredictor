@@ -1,6 +1,6 @@
 .dashboard-card {
     /* max-width: 500px; */
-    min-width: 300px;
+    min-width: 320px;
     min-height: 250px;
     padding: 2rem;
     margin: 0;
@@ -29,7 +29,7 @@ canvas {
 
 .mat-display-1 {
     display: inline;
-    margin-left: 3rem;
+    margin-left: 2rem;
 }
 
 mat-grid-list{

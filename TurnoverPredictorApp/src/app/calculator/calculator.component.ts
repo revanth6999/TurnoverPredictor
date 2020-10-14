@@ -6,6 +6,7 @@ import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { PredictService } from '../_services/predict.service';
 import * as Chart from 'chart.js';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-calculator',
@@ -28,28 +29,31 @@ export class CalculatorComponent implements OnInit {
   indOther: number;
   indAcc: number;
   days: number;
+  rate: number;
   size: number;
+  strength: number;
   result: number;
-  showCalculator: boolean;
+  // showCalculator: boolean;
   showPrediction: boolean;
-  employeeTurnover: any;
+  employeeTurnover: number;
   predictChart: Chart;
   turnover: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private predictService: PredictService,
+    private userService: UserService,
     private snackBar: MatSnackBar,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.result = 0;
-    this.showCalculator = false;
+    // this.showCalculator = false;
     this.showPrediction = false;
     this.calculatorForm = this.formBuilder.group({
       teamSize: [1],
-      days: [1],
+      rate: [1],
       grpTravel: [0],
       grpFood: [0],
       grpAcc: [0],
@@ -59,8 +63,24 @@ export class CalculatorComponent implements OnInit {
       indOther: [0],
       indAcc: [0]
     });
-    this.turnover = 6;
-    this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.turnover);
+
+    this.predictService.predictEmployeeTurnover().subscribe((next) => {
+      console.log(next);
+      console.log(typeof(next));
+      this.employeeTurnover = parseInt(next.toString(), 10);
+      this.predictChart = this.createChart('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
+    }, error => {
+      this.employeeTurnover = 0.205;
+      console.log('prediction error');
+    });
+
+    this.userService.getUsers().subscribe((users) => {
+      this.strength = users.length;
+      // this.strength = 15;
+    }, error => {
+      this.strength = 15;
+      console.log('strength calc error');
+    });
   }
 
   calculate(): void {
@@ -73,8 +93,11 @@ export class CalculatorComponent implements OnInit {
     this.indFood = parseInt(this.calculatorForm.value.indFood, 10);
     this.indOther = parseInt(this.calculatorForm.value.indOther, 10);
     this.indAcc = parseInt(this.calculatorForm.value.indAcc, 10);
-    this.days = this.calculatorForm.value.days;
+    this.rate = parseInt(this.calculatorForm.value.rate, 10);
     this.size = this.calculatorForm.value.teamSize;
+
+    this.days = Math.ceil(Math.ceil(this.employeeTurnover * this.strength) / (this.size  * this.rate));
+    // console.log(this.days, this.employeeTurnover, this.rate, this.strength);
 
     this.result = (this.grpTravel + this.grpFood + this.grpAcc + this.thirdParty) +
                   (this.indFood + this.indAcc + this.indOther + this.indTravel) * this.days * this.size;
@@ -84,7 +107,7 @@ export class CalculatorComponent implements OnInit {
 
   predictET(): void {
     this.predictService.predictEmployeeTurnover().subscribe(next => {
-      this.employeeTurnover = next;
+      this.employeeTurnover = parseInt(next.toString(), 10);
       this.showPrediction = true;
       this.snackBar.open('Employee turnover prediction success', '',
         {

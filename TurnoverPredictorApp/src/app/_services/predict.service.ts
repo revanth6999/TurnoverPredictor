@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class PredictService {
 
-  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl + 'predict';
+  TurnoverPredictorAPIUrl = environment.TurnoverPredictorAPIUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +27,7 @@ export class PredictService {
     return this.http.get(this.TurnoverPredictorAPIUrl + 'predict');
   }
 
+  // tslint:disable-next-line: typedef
   trainEmployeeTurnover() {
     return this.http.get(this.TurnoverPredictorAPIUrl + 'train');
   }

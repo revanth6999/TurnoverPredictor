@@ -6,10 +6,11 @@
         <canvas id="predictCanvas">{{ predictChart }}</canvas>
     </div>
     <div class="welcome">
-        <button color="accent" (click)="trainET()" mat-stroked-button>Train your predictor</button><br>
-        <button color="accent" (click)="predictET()" mat-raised-button>Predict employee turnover</button><br>
-        <button color="accent" *ngIf="!this.showCalculator" (click)="this.showCalculator = true" mat-stroked-button>Show Calculator</button>
-        <button color="accent" *ngIf="this.showCalculator" (click)="this.showCalculator = false" mat-stroked-button>Hide Calculator</button>
+        <button color="accent" (click)="trainET()" mat-stroked-button>Train your predictor</button>
+        <button color="accent" (click)="predictET()" mat-raised-button>Predict employee turnover</button>
+        <hr>
+        <!-- <button color="accent" *ngIf="!this.showCalculator" (click)="this.showCalculator = true" mat-stroked-button>Show Calculator</button>
+        <button color="accent" *ngIf="this.showCalculator" (click)="this.showCalculator = false" mat-stroked-button>Hide Calculator</button> -->
     </div><br>
     <div *ngIf="this.showPrediction" class="welcome">
         <div class="mat-title">Employee turnover is {{this.employeeTurnover}} %</div>
@@ -20,7 +21,7 @@
     </div> -->
 </div>
 
-<form *ngIf="showCalculator" [formGroup]="calculatorForm" (submit)="calculate()" class="calculator-form">
+<form [formGroup]="calculatorForm" (submit)="calculate()" class="calculator-form">
     <div id="titleCalc" class="mat-title">Recruitment budget estimator</div>
     <div>
         <div>
@@ -32,10 +33,11 @@
                 </mat-error>
             </mat-form-field> 
             <mat-form-field color="primary" hideRequiredMarker>
-                <mat-label>Number of days for recruitment</mat-label>
-                <input type="number" min="1" matInput formControlName="days" required> 
-                <mat-error *ngIf="calculatorForm.controls.days.touched && calculatorForm.controls.days.invalid">
-                    <span *ngIf="calculatorForm.controls.days.errors.required">Number of days for recruitment is required</span>
+                <mat-label>Recruitment rate</mat-label>
+                <input type="number" min="1" matInput formControlName="rate" required> 
+                <mat-hint>Number of candidates recruited by a recruiter per day</mat-hint>
+                <mat-error *ngIf="calculatorForm.controls.rate.touched && calculatorForm.controls.rate.invalid">
+                    <span *ngIf="calculatorForm.controls.rate.errors.required">Recruitment rate is required</span>
                 </mat-error>
             </mat-form-field> 
         </div>
