@@ -29,6 +29,8 @@ export class ProfileComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   user: User;
+  minDate: Date;
+  today: Date;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,10 +38,14 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog) {
+      this.minDate = new Date();
+      this.today = new Date();
+    }
 
 
   ngOnInit(): void {
+    this.minDate.setFullYear(this.minDate.getFullYear() - 100);
     this.user = this.authService.currentUser;
     console.log('ray', this.user.displayPictureUrl);
     this.profileForm = this.formBuilder.group({

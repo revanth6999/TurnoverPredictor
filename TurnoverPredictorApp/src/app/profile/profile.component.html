@@ -13,7 +13,7 @@
         <div>
             <mat-form-field> 
                 <mat-label>Date Of Birth</mat-label>
-                <input matInput [matDatepicker]="datePicker1" formControlName="dateOfBirth">
+                <input matInput [min]="minDate" [max]="today" [matDatepicker]="datePicker1" formControlName="dateOfBirth">
                 <mat-datepicker-toggle [for]="datePicker1" matSuffix></mat-datepicker-toggle>
                 <mat-datepicker #datePicker1></mat-datepicker>
             </mat-form-field>

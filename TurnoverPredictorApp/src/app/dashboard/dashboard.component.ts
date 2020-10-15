@@ -71,7 +71,7 @@ export class DashboardComponent implements OnInit {
 
   predictET(): void {
     this.predictService.predictEmployeeTurnover().subscribe(next => {
-      this.employeeTurnover = parseInt(next.toString(), 10);
+      this.employeeTurnover = parseFloat(next.toString());
       console.log('et', this.employeeTurnover);
       this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
       }, error => {
