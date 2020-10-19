@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../_models/User';
 import { UserHRModel } from '../_models/UserHRModel';
+import { UserEngageModel } from '../_models/UserEngageModel';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +24,10 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.WorkforceManagerAPIUrl + 'users', httpOptions);
+  }
+
+  getUsersModel(): Observable<UserEngageModel[]> {
+    return this.http.get<UserEngageModel[]>(this.WorkforceManagerAPIUrl + 'users/modellist', httpOptions);
   }
 
   getUsersUnderManager(id): Observable<User[]> {

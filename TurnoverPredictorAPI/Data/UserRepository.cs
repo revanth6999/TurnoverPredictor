@@ -26,6 +26,10 @@ namespace TurnoverPredictorAPI.Data
                  join p in Context.UserPerformances on u.Id equals p.UserId
                  join f in Context.UserFeedbacks on p.UserId equals f.UserId
                  select new UserDto {
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email,
                     Age = DateTimeHandler.CalculateYears(u.DateOfBirth),
                     BusinessTravel = u.BusinessTravel,
                     Department = u.Department,
@@ -51,7 +55,8 @@ namespace TurnoverPredictorAPI.Data
                     YearsAtCompany = DateTimeHandler.CalculateYears(u.DateOfJoining),
                     YearsInCurrentRole = DateTimeHandler.CalculateYears(p.LastRoleUpdate),
                     YearsSinceLastPromotion = DateTimeHandler.CalculateYears(p.LastPromotionUpdate),
-                    YearsWithCurrManager = DateTimeHandler.CalculateYears(p.LastManagerUpdate)
+                    YearsWithCurrManager = DateTimeHandler.CalculateYears(p.LastManagerUpdate),
+                    DisplayPictureUrl = u.DisplayPictureUrl 
                  }
             );            
             return users;

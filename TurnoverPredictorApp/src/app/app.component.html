@@ -26,6 +26,10 @@
         <mat-icon color="primary">calculate</mat-icon> Predictor
       </a>
 
+      <a *ngIf="this.authService.currentUser.jobRole === 'Human Resources'" mat-list-item [routerLink]="['/engage']" disableRipple>
+        <mat-icon color="primary">offline_bolt</mat-icon> Engage
+      </a>
+
       <!-- TEST CODE - ABOVE CODE FOR PRODUCTION -->
 
       <!--

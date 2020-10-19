@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { AuthGuard } from './_guards/AuthGuard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EngageComponent } from './engage/engage.component';
 
 export const appRoutes: Routes = [
 
@@ -19,6 +20,7 @@ export const appRoutes: Routes = [
     { path: 'employees', component: ManageEmployeesComponent, canActivate: [AuthGuard] },
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'predictor', component: CalculatorComponent, canActivate: [AuthGuard] },
+    { path: 'engage', component: EngageComponent, canActivate: [AuthGuard] },
     // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full'}
 ];

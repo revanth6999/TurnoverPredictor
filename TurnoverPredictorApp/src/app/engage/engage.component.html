@@ -1,0 +1,76 @@
+<div class="mat-title engageTitle">Important factors for employee attrition</div> 
+<div class="chip-container">
+    <mat-chip-list>
+        <mat-chip>Age</mat-chip>
+        <mat-chip>Years since last promotion</mat-chip>
+        <mat-chip>Performance rating</mat-chip>
+        <mat-chip>Job satisfaction</mat-chip>
+        <mat-chip>Work life balance</mat-chip>
+      </mat-chip-list>
+</div>
+
+<div class="mat-title engageTitle">Employees with high leaving probability</div> 
+
+<mat-expansion-panel *ngFor="let i of keys" hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>                    
+            <strong>{{"#" + leavingUsers[i].id + " " +leavingUsers[i].firstName + " " + leavingUsers[i].lastName}}</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+            {{leavingUsers[i].jobRole + " - " + leavingUsers[i].email}}
+        </mat-panel-description>
+        {{leavingUsers[i].department + " - " + leavingUserProbs[i] + " %"}} <mat-icon class="green-daw">thumb_down</mat-icon>
+    </mat-expansion-panel-header>
+    <div class="panel-body">
+        <div>
+            <img *ngIf="leavingUsers[i].displayPictureUrl !== null" src="{{leavingUsers[i].displayPictureUrl}}">
+            <img *ngIf="leavingUsers[i].displayPictureUrl === null" src="../../assets/propic.jpg">
+            <div id="user-detail">
+                <div class="mat-title">Age: {{leavingUsers[i].age}}</div>
+                <div class="mat-title">Years at company: {{leavingUsers[i].yearsAtCompany}}</div>
+                <div class="mat-title">Annual Income: &#x20B9; {{leavingUsers[i].annualIncome}}</div>
+                <div class="mat-title">Years since last promotion: {{leavingUsers[i].yearsSinceLastPromotion}}</div>
+            </div>
+        </div>
+        <button mat-button (click)="this.loadChart(i)" disableRipple>Show Details</button>
+        <mat-divider></mat-divider>
+        <div class="canvasContainer" [hidden]="!perfCharts[i]">
+            <canvas id="{{'pCanvas' + leavingUsers[i].id}}">{{ perfCharts[i] }}</canvas>
+        </div>
+        <div class="canvasContainer" [hidden]="!feedCharts[i]">
+            <canvas id="{{'fCanvas' + leavingUsers[i].id}}">{{ feedCharts[i] }}</canvas>
+        </div>
+    </div>
+</mat-expansion-panel>
+
+<!-- <div class="canvasContainer" [hidden]="!chart">
+    <canvas id="canvas">{{ chart }}</canvas>
+</div>     -->
+
+<!-- <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>                    
+            Revanth Nallam
+        </mat-panel-title>
+        <mat-panel-description>
+            Associate Application Developer
+        </mat-panel-description>
+        iHCM
+    </mat-expansion-panel-header>
+    <div class="panel-body">
+        <p style="text-align:justify" class="mat-subheading-1">
+            <img src="../../assets/propic.jpg"><br>
+            <img src="../../assets/propic.jpg"><br>
+            <img src="../../assets/propic.jpg"><br>
+        </p>
+    </div>
+</mat-expansion-panel>
+ -->
+
+ <!-- <div class="canvasContainer" [hidden]="!charts[0]">
+    <canvas id="canvas1">{{ charts[0] }}</canvas>
+</div>  
+
+<div class="canvasContainer" [hidden]="!charts[1]">
+    <canvas id="canvas7">{{ charts[1] }}</canvas>
+</div>   -->

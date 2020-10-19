@@ -69,13 +69,26 @@ export class DashboardComponent implements OnInit {
     this.predictET();
   }
 
+  // predictET(): void {
+  //   this.predictService.predictEmployeeTurnover().subscribe(next => {
+  //     this.employeeTurnover = parseInt(next.toString(), 10);
+  //     console.log('et', this.employeeTurnover);
+  //     this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
+  //     }, error => {
+  //       this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], 21.5);
+  //       return;
+  //     }
+  //   );
+  // }
+
   predictET(): void {
     this.predictService.predictEmployeeTurnover().subscribe(next => {
-      this.employeeTurnover = parseFloat(next.toString());
+      this.employeeTurnover = next[0]; // parseInt(next.toString(), 10);
+      console.log('Turnover predictions', next);
       console.log('et', this.employeeTurnover);
       this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], this.employeeTurnover);
       }, error => {
-        this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], 21.5);
+        this.predictChart = this.createChartWithLegend('predictCanvas', ['Turnover %', 'Retention %'], 8.5);
         return;
       }
     );

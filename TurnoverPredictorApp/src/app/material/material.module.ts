@@ -19,7 +19,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -43,6 +45,8 @@ const MaterialComponents = [
   MatSnackBarModule,
   MatTableModule,
   MatDialogModule,
+  MatSlideToggleModule,
+  MatChipsModule
 ];
 
 @NgModule({

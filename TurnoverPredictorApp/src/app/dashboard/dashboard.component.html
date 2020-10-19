@@ -5,7 +5,7 @@
             <mat-card-header>
                 <mat-card-title>Real time prediction</mat-card-title>
                 <mat-card-subtitle>(in %)</mat-card-subtitle>
-            </mat-card-header>    
+            </mat-card-header>
             <mat-card-content>
                 <div [hidden]="!predictChart">
                     <canvas id="predictCanvas">{{ predictChart }}</canvas>
@@ -22,7 +22,7 @@
                 <mat-card-title>Average Feedback</mat-card-title>
                 <mat-card-subtitle>(in %)</mat-card-subtitle>
             </mat-card-header>
-    
+
             <mat-card-content>
                 <div class="mat-subheading-2">Job Satisfaction </div>
                 <div class="mat-display-1">
@@ -31,7 +31,7 @@
                         <canvas id="jobSatCanvas">{{ jobSatChart }}</canvas>
                     </div>
                 </div><br><br>
-                <div class="mat-subheading-2">Workplace Satisfaction </div>
+                <div class="mat-subheading-2">Env. Satisfaction </div>
                 <div class="mat-display-1">
                     <div class="small-canvas" [hidden]="!jobEnvChart">
                         <canvas id="jobEnvCanvas">{{ jobEnvChart }}</canvas>
@@ -51,9 +51,9 @@
             <mat-card-header>
                 <mat-card-title>Average Performance</mat-card-title>
                 <mat-card-subtitle>(in %)</mat-card-subtitle>
-            </mat-card-header>    
+            </mat-card-header>
             <mat-card-content>
-                <div class="mat-subheading-2">Performance Rating </div>
+                <div class="mat-subheading-2">Perf. Rating </div>
                 <div class="mat-display-1">
                     <div class="small-canvas" [hidden]="!perfRatChart">
                         <canvas id="perfRatCanvas">{{ perfRatChart }}</canvas>
@@ -73,5 +73,5 @@
                 </div><br><br>
             </mat-card-content>
         </mat-card>
-    </mat-grid-tile>    
+    </mat-grid-tile>
 </mat-grid-list>

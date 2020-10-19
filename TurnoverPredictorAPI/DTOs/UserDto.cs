@@ -4,7 +4,10 @@ namespace TurnoverPredictorAPI.DTOs
 {
     public class UserDto
     {
-        // public int Id { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
         public int Age { get; set; }     
         public string BusinessTravel { get; set; }
         public string Department { get; set; }
@@ -31,5 +34,6 @@ namespace TurnoverPredictorAPI.DTOs
         public int YearsInCurrentRole { get; set; }
         public int YearsSinceLastPromotion { get; set; }
         public int YearsWithCurrManager { get; set; }
+        public string DisplayPictureUrl { get; set; }
     }
 }

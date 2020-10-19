@@ -34,6 +34,7 @@ import { PhotoComponent } from './photo/photo.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RemoveEmployeeComponent } from './remove-employee/remove-employee.component';
+import { EngageComponent } from './engage/engage.component';
 
 
 
@@ -54,7 +55,8 @@ import { RemoveEmployeeComponent } from './remove-employee/remove-employee.compo
     CalculatorComponent,
     PhotoComponent,
     DashboardComponent,
-    RemoveEmployeeComponent
+    RemoveEmployeeComponent,
+    EngageComponent
   ],
   entryComponents: [HomeComponent],
   imports: [

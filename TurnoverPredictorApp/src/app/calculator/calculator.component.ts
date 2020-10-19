@@ -116,7 +116,7 @@ export class CalculatorComponent implements OnInit {
 
   trainET(): void {
     this.predictService.trainEmployeeTurnover().subscribe(next => {
-      this.snackBar.open('Model training success', '',
+      this.snackBar.open('Predictor training success', '',
         {
           duration: 2000,
           panelClass: ['my-snackbar'],
@@ -124,7 +124,7 @@ export class CalculatorComponent implements OnInit {
           verticalPosition: this.verticalPosition,
         });
       }, error => {
-        this.snackBar.open('Model training failed', '',
+        this.snackBar.open('Predictor training failed', '',
         {
           duration: 2000,
           panelClass: ['my-snackbar'],
@@ -155,10 +155,6 @@ export class CalculatorComponent implements OnInit {
         legend: {
           display: true
         },
-        // title: {
-        //   display: true,
-        //   text: 'Revanth Nallam',
-        // }
       }
     });
     return newChart;
